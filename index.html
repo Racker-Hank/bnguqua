@@ -8,7 +8,7 @@
 	<link rel="icon"
 		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>">
 	<link
-		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
 		rel="stylesheet">
 	<style>
 		:root {
@@ -21,6 +21,18 @@
 			--gradient-silver: linear-gradient(135deg, #e2e8f0 0%, #ffffff 50%, #e2e8f0 100%);
 			--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
 			--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+		}
+
+		* {
+			scrollbar-width: none;
+			/* Firefox */
+			-ms-overflow-style: none;
+			/* IE/Edge */
+		}
+
+		*::-webkit-scrollbar {
+			display: none;
+			/* Chrome/Safari/Opera */
 		}
 
 		body {
@@ -53,13 +65,13 @@
 			box-shadow: var(--shadow);
 			text-align: center;
 			border: 1px solid rgba(255, 255, 255, 0.6);
-			max-width: 400px;
+			max-width: 500px;
 			width: 90%;
 		}
 
 		h1 {
 			margin-top: 0;
-			font-family: 'Cinzel', serif;
+			font-family: 'Outfit', sans-serif;
 			font-weight: 700;
 			font-size: 2.5rem;
 			letter-spacing: 0.02em;
@@ -75,7 +87,9 @@
 			color: var(--text-secondary);
 			line-height: 1.6;
 			margin: 0 0 2rem 0;
-			font-family: 'Montserrat', sans-serif;
+			font-family: 'Pinyon Script', cursive;
+			font-size: 1.5rem;
+			letter-spacing: 0.1em;
 		}
 
 		.button-group {
@@ -157,7 +171,7 @@
 			padding: 0;
 			border-radius: 0;
 			font-size: 12px;
-			font-family: 'Cinzel', serif;
+			font-family: 'Outfit', sans-serif;
 			font-weight: 600;
 			backdrop-filter: none;
 			box-shadow: none;

@@ -8,7 +8,7 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦢</text></svg>">
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -27,6 +27,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari/Opera */
         }
 
         body {
@@ -59,7 +68,7 @@
         }
 
         h1 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
             color: var(--text-primary);
@@ -75,14 +84,15 @@
         }
 
         .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
             color: var(--accent-blue);
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.1em;
-            text-transform: uppercase;
+            text-transform: none;
             position: relative;
             z-index: 2;
+            margin-top: 0.5rem;
         }
 
         /* Sparkle Element for JS */
@@ -229,7 +239,7 @@
 
         .time {
             display: inline-block;
-            font-family: 'Cinzel', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--accent-blue);
@@ -238,7 +248,7 @@
         }
 
         .activity-title {
-            font-family: 'Cinzel', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 1rem;
@@ -521,7 +531,7 @@
 
     <div class="container">
         <header>
-            <h1>Our Perfect Day</h1>
+            <h1>A New Chapter</h1>
             <p class="subtitle">A journey of elegance, laughter, and a little sparkle.</p>
         </header>
 
@@ -533,8 +543,9 @@
                 <div class="timeline-content">
                     <span class="time">09:00 AM</span>
                     <h3 class="activity-title">Morning Rays</h3>
-                    <p class="description">We start with a light breakfast at the Glasshouse Café. Coffee, croissants,
-                        and the morning sun filtering through the glass panes.</p>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, tenetur?
+                        Odio eius eveniet corporis alias qui distinctio quia necessitatibus suscipit deleniti quisquam
+                        facere optio</p>
                 </div>
             </div>
 
