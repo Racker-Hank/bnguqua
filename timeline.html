@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Perfect Day</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦢</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --accent-blue: #2563eb;
+            --accent-silver: #cbd5e1;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --gradient-silver: linear-gradient(135deg, #e2e8f0 0%, #ffffff 50%, #e2e8f0 100%);
+            --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(148, 163, 184, 0.1) 0%, transparent 40%);
+            min-height: 100vh;
+            cursor: default;
+            position: relative;
+            /* Ensure absolute children stretch full height */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+            background: linear-gradient(45deg, #1e293b, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sparkle Element for JS */
+        .sparkle-particle {
+            position: absolute;
+            pointer-events: none;
+            background: radial-gradient(circle, #fff 10%, transparent 60%);
+            border-radius: 50%;
+            z-index: 1000;
+            opacity: 0;
+            animation: sparkleAnim 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .ambient-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
+            animation: twinkleAmbient 4s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes twinkleAmbient {
+
+            0%,
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Timeline Structure */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    transparent,
+                    var(--accent-silver) 10%,
+                    var(--accent-silver) 90%,
+                    transparent);
+            background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px);
+            background-size: 1px 10px;
+            background-repeat: repeat-y;
+        }
+
+        .timeline-item {
+            margin-bottom: 5rem;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* cursor: pointer; */
+            /* Indicate interaction */
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 16px;
+            height: 16px;
+            background: var(--bg-color);
+            border: 2px solid var(--accent-blue);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--accent-blue);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+            transform: translateX(-50%) rotate(225deg);
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 5;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            text-align: right;
+            border-right: 3px solid var(--accent-silver);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            text-align: left;
+            border-left: 3px solid var(--accent-silver);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .time {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .activity-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .description {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .timeline-item:last-child .timeline-content {
+            border-color: var(--accent-blue);
+            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+        }
+
+        .timeline-item:last-child .timeline-dot {
+            background: var(--accent-blue);
+            border-color: #ffffff;
+            width: 20px;
+            height: 20px;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .timeline-item:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .timeline-item:nth-child(5) {
+            animation-delay: 1.0s;
+        }
+
+        .timeline-item:nth-child(6) {
+            animation-delay: 1.2s;
+        }
+
+        /* --- POLAROID STYLES --- */
+        .polaroid-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Let clicks pass through to timeline */
+            z-index: 1;
+            /* Behind timeline content (z-index 10) */
+            overflow: hidden;
+        }
+
+        .polaroid {
+            position: absolute;
+            background: white;
+            padding: 10px 10px 60px 10px;
+            /* Traditional Polaroid sizing */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, z-index 0.3s ease;
+            width: 270px;
+            pointer-events: auto;
+            /* Enable hover on photos */
+            cursor: pointer;
+            transform: translate(var(--parallax-x, 0), var(--parallax-y, 0)) var(--base-rotate, rotate(0deg));
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(20%) contrast(90%);
+            /* Vintage feel */
+        }
+
+        .polaroid:hover {
+            transform: translate(var(--parallax-x, 0), var(--parallax-y, 0)) var(--base-rotate, rotate(0deg)) scale(1.1) !important;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Positioning & Rotation */
+        .polaroid:nth-child(1) {
+            top: 15%;
+            left: 5%;
+            --base-rotate: rotate(-6deg);
+        }
+
+        .polaroid:nth-child(2) {
+            top: 30%;
+            right: 5%;
+            --base-rotate: rotate(4deg);
+        }
+
+        .polaroid:nth-child(3) {
+            top: 45%;
+            left: 8%;
+            --base-rotate: rotate(3deg);
+        }
+
+        .polaroid:nth-child(4) {
+            top: 57%;
+            right: 8%;
+            --base-rotate: rotate(-5deg);
+        }
+
+        .polaroid:nth-child(5) {
+            top: 73%;
+            left: 5%;
+            --base-rotate: rotate(-2deg);
+        }
+
+        .polaroid:nth-child(6) {
+            top: 85%;
+            right: 5%;
+            --base-rotate: rotate(5deg);
+        }
+
+        @media (max-width: 1024px) {
+            .polaroid-container {
+                display: none;
+                /* Hide on smaller screens to avoid overlap */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding-left: 3rem;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                text-align: left !important;
+                border: none !important;
+                border-left: 3px solid var(--accent-silver) !important;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* --- SWAN TRANSFORM (OVERLAY METHOD) --- */
+        /* Swan overlay container */
+        .swan-overlay {
+            position: absolute;
+            left: 50%;
+            /* top: 0; */
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        .swan-overlay svg {
+            width: 20px;
+            height: auto;
+            opacity: 0;
+            transform: rotate(0deg);
+            transition: all 0.8s ease-in-out;
+            filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.8));
+        }
+
+        .swan-overlay svg path {
+            fill: #2563eb;
+        }
+
+        /* Active state triggered by JS - Rotation with Crossfade */
+        .timeline-item.swan-active .timeline-dot {
+            transform: translateX(-50%) rotate(405deg);
+            /* 360 + 45 = full rotation maintaining diamond */
+            opacity: 0;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .timeline-item.swan-active .swan-overlay svg {
+            opacity: 1;
+            transform: rotate(360deg);
+            /* Full rotation */
+        }
+
+        /* --- RESPONSIVE SWAN OVERLAY --- */
+        @media (max-width: 768px) {
+            .swan-overlay {
+                left: 20px;
+            }
+        }
+
+        /* --- PAGE TRANSITION FADE-IN --- */
+        #page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            /* Match bg color */
+            z-index: 9999;
+            pointer-events: none;
+            animation: fadeContentIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeContentIn {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- FADE IN OVERLAY -->
+    <div id="page-transition"></div>
+
+    <!-- POLAROID CONTAINER -->
+    <div class="polaroid-container">
+        <div class="polaroid" data-speed="-2.0"><img src="https://picsum.photos/200/200?random=1" alt="Date Memory 1">
+        </div>
+        <div class="polaroid" data-speed="2.5"><img src="https://picsum.photos/200/200?random=2" alt="Date Memory 2">
+        </div>
+        <div class="polaroid" data-speed="1.8"><img src="https://picsum.photos/200/200?random=3" alt="Date Memory 3">
+        </div>
+        <div class="polaroid" data-speed="-3.0"><img src="https://picsum.photos/200/200?random=4" alt="Date Memory 4">
+        </div>
+        <div class="polaroid" data-speed="2.2"><img src="https://picsum.photos/200/200?random=5" alt="Date Memory 5">
+        </div>
+        <div class="polaroid" data-speed="-1.5"><img src="https://picsum.photos/200/200?random=6" alt="Date Memory 6">
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Our Perfect Day</h1>
+            <p class="subtitle">A journey of elegance, laughter, and a little sparkle.</p>
+        </header>
+
+        <div class="timeline">
+
+            <!-- 09:00 AM -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="time">09:00 AM</span>
+                    <h3 class="activity-title">Morning Rays</h3>
+                    <p class="description">We start with a light breakfast at the Glasshouse Café. Coffee, croissants,
+                        and the morning sun filtering through the glass panes.</p>
+                </div>
+            </div>
+
+            <!-- 11:00 AM -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="time">11:00 AM</span>
+                    <h3 class="activity-title">Nature's Grace</h3>
+                    <p class="description">A gentle walk through the Botanical Gardens. Watching the swans glide on the
+                        lake, admiring their effortless elegance and poise.</p>
+                </div>
+            </div>
+
+            <!-- 01:00 PM -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="time">01:00 PM</span>
+                    <h3 class="activity-title">Lunch by the Water</h3>
+                    <p class="description">A table for two overlooking the river. Fresh seafood, sparkling water, and
+                        the cool breeze carrying our conversation.</p>
+                </div>
+            </div>
+
+            <!-- 03:00 PM -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="time">03:00 PM</span>
+                    <h3 class="activity-title">Art & Beauty</h3>
+                    <p class="description">Visiting the Modern Art Gallery. Finding inspiration in the colors and forms,
+                        enjoying the quiet intimacy of the exhibits.</p>
+                </div>
+            </div>
+
+            <!-- 05:00 PM -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="time">05:00 PM</span>
+                    <h3 class="activity-title">Golden Hour</h3>
+                    <p class="description">A stroll along the promenade as the sun begins to set, painting the sky in
+                        soft pastels. The perfect prelude to the evening.</p>
+                </div>
+            </div>
+
+            <!-- 07:00 PM - THE GIFT -->
+            <div class="timeline-item swan-trigger">
+                <div class="timeline-dot"></div>
+                <div class="swan-overlay">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 163.549 163.549"
+                        style="enable-background:new 0 0 163.549 163.549;" xml:space="preserve">
+                        <path
+                            d="M63.544,161.323c93.412,14.144,96.695-43.74,96.695-43.74c3.631-41.441-38.811-53.608-51.627-76.633
+	c-12.836-23.012,16.928-26.473,15.115-11.666c-1.799,14.785,6.912,17.432,7.408,18.582c0.488,1.143,13.146,13.816,14.961,11.434
+	c1.803-2.396-5.18-11.434-5.18-11.434s5.422-3.135,7.473-10.199c5.922-16.124-23.34-54.924-54.25-28.95
+	c-30.266,27.961,10.18,58.23,20.719,73.352c10.525,15.126,10.137,26.54,3.609,28.615c-6.672,2.11-11.881-4.533-14.619-14.81
+	C101.3,86.29,84.45,55.433,48.593,65.281C21.958,73.845,25.07,84.362,3.681,78.442C-3.874,150.468,63.544,161.323,63.544,161.323z" />
+                    </svg>
+                </div>
+
+                <div class="timeline-content">
+                    <span class="time">07:00 PM</span>
+                    <h3 class="activity-title">A Sapphire Swan</h3>
+                    <p class="description">A moment just for us. A gift to match your grace—a delicate White Rhodium
+                        Swan, holding a deep Blue Stone at its heart. A symbol of beauty and fidelity.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SPARKLE SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. CURSOR TRAIL SPARKLES
+            let throttle = false;
+            document.addEventListener('mousemove', (e) => {
+                const polaroids = document.querySelectorAll('.polaroid');
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                // Calculate center of screen
+                const rx = window.innerWidth / 2;
+                const ry = window.innerHeight / 2;
+
+                // Floating parallax logic for Polaroids
+                polaroids.forEach(p => {
+                    const speed = parseFloat(p.getAttribute('data-speed'));
+                    const offsetX = (mouseX - rx) / rx;
+                    const offsetY = (mouseY - ry) / ry;
+                    const x = offsetX * speed * 20;
+                    const y = offsetY * speed * 20;
+
+                    // Apply parallax using CSS variables to preserve base rotation
+                    p.style.setProperty('--parallax-x', `${x}px`);
+                    p.style.setProperty('--parallax-y', `${y}px`);
+                });
+
+                if (throttle) return;
+                throttle = true;
+                setTimeout(() => throttle = false, 50);
+
+                createSparkle(e.pageX, e.pageY);
+            });
+
+            // 2. AMBIENT BACKGROUND SPARKLES
+            setInterval(() => {
+                const x = Math.random() * document.body.scrollWidth;
+                const y = Math.random() * document.body.scrollHeight;
+                createAmbientSparkle(x, y);
+            }, 300);
+
+            function createSparkle(x, y) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle-particle');
+                document.body.appendChild(sparkle);
+
+                const size = Math.random() * 8 + 4 + 'px';
+                sparkle.style.width = size;
+                sparkle.style.height = size;
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+
+                const colors = ['#ffffff', '#cbd5e1', '#2563eb', '#60a5fa', '#ffd700'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
+                sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }
+
+            function createAmbientSparkle(x, y) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('ambient-sparkle');
+                document.body.appendChild(sparkle);
+
+                const size = Math.random() * 5 + 2 + 'px';
+                sparkle.style.width = size;
+                sparkle.style.height = size;
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 4000);
+            }
+
+            // 3. SWAN TRANSFORMATION ON CLICK
+            const trigger = document.querySelector('.swan-trigger');
+            if (trigger) {
+                trigger.addEventListener('click', (e) => {
+                    // Toggle swan transformation
+                    trigger.classList.toggle('swan-active');
+
+                    // Spawn sparkles on click
+                    for (let i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            createSparkle(
+                                e.pageX + (Math.random() * 200 - 100),
+                                e.pageY + (Math.random() * 200 - 100)
+                            );
+                        }, i * 30);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

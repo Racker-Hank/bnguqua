@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Centered Content with 12 Floating Images</title>
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg-color: #f8fafc;
+			--accent-blue: #2563eb;
+			--accent-silver: #cbd5e1;
+			--text-primary: #1e293b;
+			--text-secondary: #64748b;
+			--card-bg: rgba(255, 255, 255, 0.85);
+			--gradient-silver: linear-gradient(135deg, #e2e8f0 0%, #ffffff 50%, #e2e8f0 100%);
+			--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+			--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+		}
+
+		body {
+			margin: 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: var(--bg-color);
+			color: var(--text-primary);
+			overflow: hidden;
+			height: 100vh;
+			width: 100vw;
+			background-image:
+				radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+				radial-gradient(circle at 90% 80%, rgba(148, 163, 184, 0.1) 0%, transparent 40%);
+		}
+
+		.center {
+			display: grid;
+			place-items: center;
+			height: 100vh;
+			position: relative;
+			z-index: 10;
+		}
+
+		.content {
+			padding: 3rem;
+			background: var(--card-bg);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-radius: 2px;
+			box-shadow: var(--shadow);
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.6);
+			max-width: 400px;
+			width: 90%;
+		}
+
+		h1 {
+			margin-top: 0;
+			font-family: 'Cinzel', serif;
+			font-weight: 700;
+			font-size: 2.5rem;
+			letter-spacing: 0.02em;
+			margin-bottom: 0.5rem;
+			background: linear-gradient(45deg, #1e293b, #3b82f6);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			text-transform: uppercase;
+		}
+
+		p {
+			color: var(--text-secondary);
+			line-height: 1.6;
+			margin: 0 0 2rem 0;
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		.button-group {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+		}
+
+		button {
+			padding: 0.75rem 2rem;
+			border-radius: 2px;
+			border: none;
+			font-weight: 600;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+			font-family: 'Montserrat', sans-serif;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.btn-yes {
+			background: var(--accent-blue);
+			color: white;
+		}
+
+		.btn-yes:hover {
+			background: #1d4ed8;
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+		}
+
+		.btn-no {
+			background: white;
+			color: var(--accent-blue);
+			border: 1px solid var(--accent-silver);
+		}
+
+		.btn-no:hover {
+			background: #f8fafc;
+			border-color: var(--accent-blue);
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(148, 163, 184, 0.2);
+		}
+
+		/* Floating Element - mimicking Polaroid style */
+		.floating-element {
+			position: absolute;
+			background: white;
+			padding: 8px 8px 30px 8px;
+			/* Polaroid padding */
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			pointer-events: none;
+			z-index: 1;
+			transition: transform 0.1s linear, opacity 0.3s ease;
+			/* Added opacity transition */
+			opacity: 0.85;
+			/* No border-radius on the container to match sharp polaroid corners or slight rounding */
+			border-radius: 2px;
+		}
+
+		.floating-element img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			filter: sepia(20%) contrast(90%);
+			/* Vintage feel */
+		}
+
+		.image-index {
+			position: absolute;
+			bottom: 8px;
+			right: 8px;
+			background: transparent;
+			color: #94a3b8;
+			/* Hand-written looking color? */
+			padding: 0;
+			border-radius: 0;
+			font-size: 12px;
+			font-family: 'Cinzel', serif;
+			font-weight: 600;
+			backdrop-filter: none;
+			box-shadow: none;
+		}
+
+		/* Chat Bubble Styles */
+		.chat-bubble {
+			position: absolute;
+			top: -40px;
+			left: 50%;
+			/* Center relative to image */
+			transform: translateX(-50%) scale(0) rotate(-10deg);
+			transform-origin: bottom center;
+			background: white;
+			padding: 6px 12px;
+			border-radius: 12px;
+			border-bottom-left-radius: 4px;
+			/* Callout shape style */
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			font-size: 14px;
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 500;
+			color: var(--text-primary);
+			opacity: 0;
+			transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+			/* Bouncy pop */
+			white-space: nowrap;
+			z-index: 20;
+			border: 1px solid var(--accent-silver);
+		}
+
+		.floating-element.celebrating .chat-bubble {
+			opacity: 1;
+			transform: translateX(-50%) scale(1) rotate(0deg);
+			top: -50px;
+			/* Float up slightly */
+		}
+
+		.ghost-btn {
+			position: fixed;
+			pointer-events: none;
+			z-index: 1000;
+			transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+		}
+
+		.ghost-btn.flying {
+			transform: translate(200px, -100vh) rotate(720deg) scale(0.5);
+			opacity: 0;
+		}
+
+		/* Sparkle Element for JS */
+		.sparkle-particle {
+			position: absolute;
+			pointer-events: none;
+			background: radial-gradient(circle, #fff 10%, transparent 60%);
+			border-radius: 50%;
+			z-index: 1000;
+			opacity: 0;
+			animation: sparkleAnim 1.5s ease-out forwards;
+		}
+
+		@keyframes sparkleAnim {
+			0% {
+				transform: scale(0) rotate(0deg);
+				opacity: 0;
+			}
+
+			50% {
+				transform: scale(1.5) rotate(180deg);
+				opacity: 1;
+			}
+
+			100% {
+				transform: scale(0) rotate(360deg);
+				opacity: 0;
+			}
+		}
+
+		.ambient-sparkle {
+			position: absolute;
+			width: 4px;
+			height: 4px;
+			background: white;
+			border-radius: 50%;
+			box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
+			animation: twinkleAmbient 4s infinite ease-in-out;
+			z-index: 1;
+		}
+
+		@keyframes twinkleAmbient {
+
+			0%,
+			100% {
+				transform: scale(0);
+				opacity: 0;
+			}
+
+			50% {
+				transform: scale(1.2);
+				opacity: 0.8;
+			}
+		}
+
+		/* Transition Overlay */
+		#transition-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #f8fafc;
+			/* Match Untitled-2 bg color */
+			z-index: 9999;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 1.2s ease-in-out;
+		}
+
+		body.fade-out #transition-overlay {
+			opacity: 1;
+			pointer-events: all;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 1. Top Left -->
+	<div class="floating-element" style="top: 10%; left: 10%; width: 140px; height: 140px;" data-speed="-2">
+		<div class="chat-bubble">mizzubibi</div>
+		<img src="https://picsum.photos/id/10/200/200" alt="Nature">
+		<div class="image-index">1</div>
+	</div>
+
+	<!-- 2. Bottom Left -->
+	<div class="floating-element" style="bottom: 15%; left: 15%; width: 110px; height: 110px;" data-speed="4">
+		<div class="chat-bubble">💚</div>
+		<img src="https://picsum.photos/id/11/200/200" alt="Landscape">
+		<div class="image-index">2</div>
+	</div>
+
+	<!-- 3. Top Right -->
+	<div class="floating-element" style="top: 15%; right: 12%; width: 160px; height: 160px;" data-speed="2">
+		<div class="chat-bubble">ehehe</div>
+		<img src="https://picsum.photos/id/12/200/200" alt="Beach">
+		<div class="image-index">3</div>
+	</div>
+
+	<!-- 4. Bottom Right -->
+	<div class="floating-element" style="bottom: 10%; right: 15%; width: 130px; height: 130px;" data-speed="-3">
+		<div class="chat-bubble">lavli</div>
+		<img src="https://picsum.photos/id/14/200/200" alt="Ocean">
+		<div class="image-index">4</div>
+	</div>
+
+	<!-- 5. Top Center -->
+	<div class="floating-element" style="top: 5%; left: 45%; width: 100px; height: 100px;" data-speed="5">
+		<div class="chat-bubble">buh baii</div>
+		<img src="https://picsum.photos/id/15/200/200" alt="Waterfall">
+		<div class="image-index">5</div>
+	</div>
+
+	<!-- 6. Bottom Center -->
+	<div class="floating-element" style="bottom: 5%; right: 40%; width: 120px; height: 120px;" data-speed="-4">
+		<div class="chat-bubble">nhob nhob</div>
+		<img src="https://picsum.photos/id/16/200/200" alt="River">
+		<div class="image-index">6</div>
+	</div>
+
+	<!-- 7. Middle Left -->
+	<div class="floating-element" style="top: 45%; left: 5%; width: 90px; height: 90px;" data-speed="3">
+		<div class="chat-bubble">khrooo</div>
+		<img src="https://picsum.photos/id/17/200/200" alt="Forest">
+		<div class="image-index">7</div>
+	</div>
+
+	<!-- 8. Middle Right -->
+	<div class="floating-element" style="top: 50%; right: 5%; width: 150px; height: 150px;" data-speed="-5">
+		<div class="chat-bubble">ebehemehe?</div>
+		<img src="https://picsum.photos/id/18/200/200" alt="Grass">
+		<div class="image-index">8</div>
+	</div>
+
+	<!-- 9. Inner Left Top -->
+	<div class="floating-element" style="top: 25%; left: 25%; width: 80px; height: 80px;" data-speed="6">
+		<div class="chat-bubble">naee</div>
+		<img src="https://picsum.photos/id/19/200/200" alt="Mountain">
+		<div class="image-index">9</div>
+	</div>
+
+	<!-- 10. Inner Right Bottom -->
+	<div class="floating-element" style="bottom: 25%; right: 25%; width: 115px; height: 115px;" data-speed="-6">
+		<div class="chat-bubble">zeeeee</div>
+		<img src="https://picsum.photos/id/20/200/200" alt="City">
+		<div class="image-index">10</div>
+	</div>
+
+	<!-- 11. Bottom Center Left -->
+	<div class="floating-element" style="bottom: 5%; left: 40%; width: 95px; height: 95px;" data-speed="1.5">
+		<div class="chat-bubble">akay</div>
+		<img src="https://picsum.photos/id/21/200/200" alt="Shoes">
+		<div class="image-index">11</div>
+	</div>
+
+	<!-- 12. Top Center Right -->
+	<div class="floating-element" style="top: 8%; right: 35%; width: 105px; height: 105px;" data-speed="-2.5">
+		<div class="chat-bubble">wieee</div>
+		<img src="https://picsum.photos/id/25/200/200" alt="Book">
+		<div class="image-index">12</div>
+	</div>
+
+	<div class="center">
+		<div class="content">
+			<h1>6 Floating <br> & Parallax</h1>
+			<p>Do you like the elegant floating effect?</p>
+			<div class="button-group">
+				<button class="btn-yes">Yes</button>
+				<button class="btn-no transition-trigger">No</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Transition Overlay Element -->
+	<div id="transition-overlay"></div>
+
+	<script>
+		// Handle Page Transition
+		const transitionTriggers = document.querySelectorAll('.transition-trigger');
+
+		transitionTriggers.forEach(btn => {
+			btn.addEventListener('click', () => {
+				document.body.classList.add('fade-out');
+
+				setTimeout(() => {
+					window.location.href = './timeline.html';
+				}, 1200); // 1.2s to match CSS transition
+			});
+		});
+
+		// Handle Yes button - prevent transition and show confirmation
+		const btnYes = document.querySelector('.btn-yes');
+		let hasClickedYes = false;
+
+		btnYes.addEventListener('click', (e) => {
+			if (!hasClickedYes) {
+				e.stopPropagation();
+				e.preventDefault();
+				hasClickedYes = true;
+				btnYes.textContent = 'you sure 👉';
+			}
+		}, true); // Use capture phase to intercept before transition trigger
+
+		const btnNo = document.querySelector('.btn-no');
+
+		// State to prevent flicker
+		let isChanged = false;
+
+		document.addEventListener('mousemove', (e) => {
+			const images = document.querySelectorAll('.floating-element');
+
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
+
+			// Calculate center of screen
+			const rx = window.innerWidth / 2;
+			const ry = window.innerHeight / 2;
+
+			// Floating images logic
+			images.forEach(img => {
+				const speed = parseFloat(img.getAttribute('data-speed'));
+				const offsetX = (mouseX - rx) / rx;
+				const offsetY = (mouseY - ry) / ry;
+				const x = offsetX * speed * 20;
+				const y = offsetY * speed * 20;
+				img.style.transform = `translate(${x}px, ${y}px)`;
+			});
+
+			// Button proximity logic
+			const btnRect = btnNo.getBoundingClientRect();
+			const btnCenterX = btnRect.left + btnRect.width / 2;
+			const btnCenterY = btnRect.top + btnRect.height / 2;
+
+			const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
+
+			// Hysteresis thresholds
+			const triggerDist = 70;
+			const resetDist = 150;
+
+			// Sparkle Effect Logic - added from Untitled-2
+			if (Math.random() > 0.92) { // Random chance to spawn on move so it's not too crazy
+				createSparkle(e.pageX, e.pageY);
+			}
+
+			if (!isChanged && dist < triggerDist) {
+				// TRIGGER CHANGE
+				isChanged = true;
+
+				// Add celebration bubbles to images
+				images.forEach(img => img.classList.add('celebrating'));
+
+				// 1. Create Ghost Button
+				const ghost = btnNo.cloneNode(true);
+				ghost.classList.add('ghost-btn');
+				ghost.style.left = `${btnRect.left}px`;
+				ghost.style.top = `${btnRect.top}px`;
+				ghost.style.width = `${btnRect.width}px`;
+				ghost.style.height = `${btnRect.height}px`;
+				ghost.style.margin = '0'; // reset flex margin if any
+				document.body.appendChild(ghost);
+
+				// Force reflow
+				ghost.getBoundingClientRect();
+
+				// 2. Animate Ghost
+				requestAnimationFrame(() => {
+					ghost.classList.add('flying');
+				});
+
+				// 3. Cleanup Ghost (and match user's longer duration preference if adapted in CSS)
+				setTimeout(() => {
+					ghost.remove();
+				}, 2000); // Changed to 2000ms to match CSS 2s transition
+
+				// 4. Change Real Button
+				btnNo.innerText = "Of course!";
+				btnNo.classList.remove('btn-no');
+				btnNo.classList.add('btn-yes');
+
+			} else if (isChanged && dist > resetDist) {
+				// RESET
+				isChanged = false;
+
+				// Remove celebration bubbles
+				images.forEach(img => img.classList.remove('celebrating'));
+
+				btnNo.innerText = "No";
+				btnNo.classList.remove('btn-yes');
+				btnNo.classList.add('btn-no');
+			}
+		});
+
+		document.addEventListener('DOMContentLoaded', () => {
+			// 2. AMBIENT BACKGROUND SPARKLES
+			setInterval(() => {
+				const x = Math.random() * document.body.scrollWidth;
+				const y = Math.random() * document.body.scrollHeight;
+				createAmbientSparkle(x, y);
+			}, 500); // Slightly slower than Untitled-2
+		});
+
+		function createSparkle(x, y) {
+			const sparkle = document.createElement('div');
+			sparkle.classList.add('sparkle-particle');
+			document.body.appendChild(sparkle);
+
+			const size = Math.random() * 8 + 4 + 'px';
+			sparkle.style.width = size;
+			sparkle.style.height = size;
+			sparkle.style.left = x + 'px';
+			sparkle.style.top = y + 'px';
+
+			const colors = ['#ffffff', '#cbd5e1', '#2563eb', '#60a5fa', '#ffd700'];
+			const randomColor = colors[Math.floor(Math.random() * colors.length)];
+			sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
+			sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
+
+			setTimeout(() => {
+				sparkle.remove();
+			}, 1500);
+		}
+
+		function createAmbientSparkle(x, y) {
+			const sparkle = document.createElement('div');
+			sparkle.classList.add('ambient-sparkle');
+			document.body.appendChild(sparkle);
+
+			const size = Math.random() * 5 + 2 + 'px';
+			sparkle.style.width = size;
+			sparkle.style.height = size;
+			sparkle.style.left = x + 'px';
+			sparkle.style.top = y + 'px';
+			sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+			setTimeout(() => {
+				sparkle.remove();
+			}, 4000);
+		}
+	</script>
+</body>
+
+</html>
