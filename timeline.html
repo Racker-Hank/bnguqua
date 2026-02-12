@@ -320,7 +320,7 @@
 			}
 
 			.timeline-item.swan-trigger .timeline-content {
-				border-color: var(--accent-blue);
+				border-color: var(--accent-blue) !important;
 				background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
 			}
 
@@ -375,6 +375,18 @@
 			}
 
 			/* --- POLAROID STYLES --- */
+			.image-index {
+				position: absolute;
+				bottom: 12px;
+				right: 12px;
+				background: transparent;
+				color: #94a3b8;
+				font-size: 14px;
+				font-family: 'Outfit', sans-serif;
+				font-weight: 600;
+				pointer-events: none;
+			}
+
 			.polaroid-container {
 				position: absolute;
 				top: 0;
@@ -423,7 +435,7 @@
 
 			/* Positioning & Rotation */
 			.polaroid:nth-child(1) {
-				top: 15%;
+				top: 14%;
 				left: 5%;
 				--base-rotate: rotate(-6deg);
 			}
@@ -567,25 +579,31 @@
 		<div class="polaroid-container">
 			<div class="polaroid" data-speed="-2.0">
 				<img
-					style="height: 250px"
-					src="./resource/images/test.jpg"
+					style="height: 270px"
+					src="./resource/images/mi here.jpg"
 					alt="Date Memory 1"
 				/>
+				<div class="image-index">-5</div>
 			</div>
 			<div class="polaroid" data-speed="2.5">
-				<img src="https://picsum.photos/200/200?random=2" alt="Date Memory 2" />
+				<img src="./resource/images/breakfast.jpg" alt="Date Memory 2" />
+				<div class="image-index">5</div>
 			</div>
 			<div class="polaroid" data-speed="1.8">
-				<img src="https://picsum.photos/200/200?random=3" alt="Date Memory 3" />
+				<img src="./resource/images/coffee.jpeg" alt="Date Memory 3" />
+				<div class="image-index">-3</div>
 			</div>
 			<div class="polaroid" data-speed="-3.0">
-				<img src="https://picsum.photos/200/200?random=4" alt="Date Memory 4" />
+				<img src="./resource/images/ptb.jpg" alt="Date Memory 4" />
+				<div class="image-index">1</div>
 			</div>
 			<div class="polaroid" data-speed="2.2">
-				<img src="https://picsum.photos/200/200?random=5" alt="Date Memory 5" />
+				<img src="./resource/images/hdl.jpg" alt="Date Memory 5" />
+				<div class="image-index">5</div>
 			</div>
 			<div class="polaroid" data-speed="-1.5">
-				<img src="https://picsum.photos/200/200?random=6" alt="Date Memory 6" />
+				<img src="./resource/images/khrooo-timeline.jpg" alt="Date Memory 6" />
+				<div class="image-index">5</div>
 			</div>
 		</div>
 
