@@ -88,7 +88,7 @@
 				margin-top: 0;
 				font-family: 'Outfit', sans-serif;
 				font-weight: 700;
-				font-size: 2.5rem;
+				font-size: clamp(1.6rem, 4.5vw, 2.5rem);
 				letter-spacing: 0.02em;
 				margin-bottom: 0.5rem;
 				background: linear-gradient(45deg, #1e293b, #3b82f6);
@@ -103,8 +103,10 @@
 				line-height: 1.6;
 				margin: 0 0 2rem 0;
 				font-family: 'Pinyon Script', cursive;
-				font-size: 1.5rem;
+				font-size: clamp(1.2rem, 3.8vw, 1.5rem);
 				letter-spacing: 0.1em;
+				white-space: nowrap;
+				max-width: 100%;
 			}
 
 			.button-group {
@@ -304,6 +306,66 @@
 				opacity: 1;
 				pointer-events: all;
 				transition: opacity 1.2s ease-in-out;
+			}
+
+			/* Responsive layout adjustments */
+			@media (max-width: 1024px) {
+				.floating-element {
+					transform: scale(0.85);
+				}
+			}
+
+			@media (max-width: 768px) {
+				body {
+					overflow: hidden;
+				}
+
+				/* Simplify background photos on small screens */
+				.floating-element {
+					display: none;
+				}
+
+				.center {
+					padding: 1.5rem;
+				}
+
+				.content {
+					width: 100%;
+					max-width: 420px;
+					padding: 2rem 1.5rem;
+				}
+
+				h1 {
+					font-size: clamp(1.4rem, 6vw, 2rem);
+				}
+
+				p {
+					font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+				}
+
+				.button-group {
+					flex-direction: column;
+				}
+
+				button {
+					width: 100%;
+					justify-content: center;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.content {
+					max-width: 360px;
+					padding: 1.75rem 1.25rem;
+				}
+
+				h1 {
+					font-size: clamp(1.3rem, 7vw, 1.8rem);
+				}
+
+				p {
+					font-size: clamp(1rem, 4.2vw, 1.3rem);
+				}
 			}
 		</style>
 	</head>
@@ -511,7 +573,8 @@
 						e.stopPropagation();
 						e.preventDefault();
 						hasClickedYes = true;
-						btnYes.textContent = 'you sure 👉';
+						const isMobile = window.matchMedia('(max-width: 768px)').matches;
+						btnYes.textContent = isMobile ? 'you sure 👇' : 'you sure 👉';
 					}
 				},
 				true,
