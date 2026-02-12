@@ -538,6 +538,17 @@
 				}
 			});
 
+			// Fix back/forward cache: when returning from timeline,
+			// the page can be restored from bfcache without firing "load".
+			// In that case, hide the overlay immediately.
+			window.addEventListener('pageshow', (event) => {
+				if (!event.persisted) return;
+				const overlay = document.getElementById('transition-overlay');
+				if (!overlay) return;
+				overlay.style.opacity = '0';
+				overlay.style.pointerEvents = 'none';
+			});
+
 			// Handle Page Transition to timeline
 			const transitionOverlay = document.getElementById('transition-overlay');
 			const transitionTriggers = document.querySelectorAll(
@@ -564,6 +575,16 @@
 
 			// Handle Yes button - prevent transition and show confirmation
 			const btnYes = document.querySelector('.btn-yes');
+			const btnNo = document.querySelector('.btn-no');
+			const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+			// On mobile: show two stacked "positive" buttons:
+			// top = "Yes", bottom = "Of course!" (styled like Yes)
+			if (isMobile && btnNo) {
+				btnNo.textContent = 'Of course!';
+				btnNo.classList.add('btn-yes');
+			}
+
 			let hasClickedYes = false;
 
 			btnYes.addEventListener(
@@ -573,19 +594,19 @@
 						e.stopPropagation();
 						e.preventDefault();
 						hasClickedYes = true;
-						const isMobile = window.matchMedia('(max-width: 768px)').matches;
 						btnYes.textContent = isMobile ? 'you sure 👇' : 'you sure 👉';
 					}
 				},
 				true,
 			); // Use capture phase to intercept before transition trigger
 
-			const btnNo = document.querySelector('.btn-no');
-
 			// State to prevent flicker
 			let isChanged = false;
 
 			document.addEventListener('mousemove', (e) => {
+				// Skip hover game on touch / small screens
+				if (isMobile) return;
+
 				const images = document.querySelectorAll('.floating-element');
 
 				const mouseX = e.clientX;
