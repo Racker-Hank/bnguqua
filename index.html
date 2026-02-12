@@ -103,7 +103,7 @@
 				line-height: 1.6;
 				margin: 0 0 2rem 0;
 				font-family: 'Pinyon Script', cursive;
-				font-size: 1.65rem;
+				font-size: 1.5rem;
 				letter-spacing: 0.1em;
 			}
 
@@ -301,14 +301,9 @@
 				background-color: #f8fafc;
 				/* Match Untitled-2 bg color */
 				z-index: 9999;
-				opacity: 0;
-				pointer-events: none;
-				transition: opacity 1.2s ease-in-out;
-			}
-
-			body.fade-out #transition-overlay {
 				opacity: 1;
 				pointer-events: all;
+				transition: opacity 1.2s ease-in-out;
 			}
 		</style>
 	</head>
@@ -464,19 +459,45 @@
 		<div id="transition-overlay"></div>
 
 		<script>
-			// Handle Page Transition
+			// Wait for all images and fonts before revealing content
+			window.addEventListener('load', () => {
+				const overlay = document.getElementById('transition-overlay');
+				if (!overlay) return;
+
+				const finish = () => {
+					overlay.style.opacity = '0';
+					overlay.style.pointerEvents = 'none';
+				};
+
+				if (document.fonts && document.fonts.ready) {
+					document.fonts.ready.then(finish).catch(finish);
+				} else {
+					finish();
+				}
+			});
+
+			// Handle Page Transition to timeline
+			const transitionOverlay = document.getElementById('transition-overlay');
 			const transitionTriggers = document.querySelectorAll(
 				'.transition-trigger',
 			);
 
-			transitionTriggers.forEach((btn) => {
-				btn.addEventListener('click', () => {
-					document.body.classList.add('fade-out');
+			function navigateWithOverlay() {
+				if (!transitionOverlay) {
+					window.location.href = './timeline.html';
+					return;
+				}
 
-					setTimeout(() => {
-						window.location.href = './timeline.html';
-					}, 1200); // 1.2s to match CSS transition
-				});
+				transitionOverlay.style.opacity = '1';
+				transitionOverlay.style.pointerEvents = 'all';
+
+				setTimeout(() => {
+					window.location.href = './timeline.html';
+				}, 1200); // match CSS transition
+			}
+
+			transitionTriggers.forEach((btn) => {
+				btn.addEventListener('click', navigateWithOverlay);
 			});
 
 			// Handle Yes button - prevent transition and show confirmation

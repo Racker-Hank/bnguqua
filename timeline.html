@@ -80,11 +80,12 @@
 				text-align: center;
 				margin-bottom: 5rem;
 				position: relative;
+				--title-size: clamp(1.6rem, 6vw, 3.5rem);
 			}
 
 			h1 {
 				font-family: 'Outfit', sans-serif;
-				font-size: 3.5rem;
+				font-size: var(--title-size);
 				font-weight: 700;
 				color: var(--text-primary);
 				margin-bottom: 0.5rem;
@@ -96,11 +97,13 @@
 				text-transform: uppercase;
 				position: relative;
 				z-index: 2;
+				white-space: nowrap;
+				max-width: 100%;
 			}
 
 			.subtitle {
 				font-family: 'Pinyon Script', cursive;
-				font-size: 1.8rem;
+				font-size: calc(var(--title-size) * 0.5);
 				color: var(--accent-blue);
 				font-weight: 400;
 				letter-spacing: 0.1em;
@@ -108,6 +111,12 @@
 				position: relative;
 				z-index: 2;
 				margin-top: 0.5rem;
+				max-width: 100%;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				text-wrap: balance;
 			}
 
 			/* Sparkle Element for JS */
@@ -269,7 +278,7 @@
 				font-weight: 700;
 				margin-bottom: 1rem;
 				color: var(--text-primary);
-				text-transform: uppercase;
+				/* text-transform: uppercase; */
 				letter-spacing: 0.02em;
 			}
 
@@ -279,6 +288,35 @@
 				font-size: 0.95rem;
 				font-weight: 400;
 				line-height: 1.7;
+				max-width: 50ch;
+			}
+
+			/* Links – match theme (accent blue, elegant underline) */
+			a {
+				color: var(--accent-blue);
+				text-decoration: none;
+				border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+				transition:
+					color 0.25s ease,
+					border-color 0.25s ease,
+					box-shadow 0.25s ease;
+			}
+
+			a:hover {
+				color: #1d4ed8;
+				border-bottom-color: var(--accent-blue);
+				box-shadow: 0 1px 0 0 var(--accent-blue);
+			}
+
+			a:visited {
+				color: #4338ca;
+				border-bottom-color: rgba(67, 56, 202, 0.4);
+			}
+
+			a:focus-visible {
+				outline: 2px solid var(--accent-blue);
+				outline-offset: 2px;
+				border-radius: 2px;
 			}
 
 			.timeline-item.swan-trigger .timeline-content {
@@ -397,7 +435,7 @@
 			}
 
 			.polaroid:nth-child(3) {
-				top: 45%;
+				top: 43%;
 				left: 8%;
 				--base-rotate: rotate(3deg);
 			}
@@ -409,7 +447,7 @@
 			}
 
 			.polaroid:nth-child(5) {
-				top: 73%;
+				top: 70%;
 				left: 5%;
 				--base-rotate: rotate(-2deg);
 			}
@@ -450,7 +488,7 @@
 				}
 
 				h1 {
-					font-size: 2.5rem;
+					font-size: clamp(1.6rem, 6vw, 3.5rem);
 				}
 			}
 
@@ -514,18 +552,9 @@
 				background-color: #f8fafc;
 				/* Match bg color */
 				z-index: 9999;
-				pointer-events: none;
-				animation: fadeContentIn 1.2s ease-out forwards;
-			}
-
-			@keyframes fadeContentIn {
-				0% {
-					opacity: 1;
-				}
-
-				100% {
-					opacity: 0;
-				}
+				pointer-events: all;
+				opacity: 1;
+				transition: opacity 0.9s ease-out;
 			}
 		</style>
 	</head>
@@ -564,7 +593,7 @@
 			<header>
 				<h1>Just the two of us</h1>
 				<p class="subtitle">
-					A journey of elegance, laughter, and a little sparkle.
+					For our Valent-anni, I have something special on my mind for us...
 				</p>
 			</header>
 
@@ -573,17 +602,41 @@
 				<div class="timeline-item">
 					<div class="timeline-dot"></div>
 					<div class="timeline-content">
-						<span class="time">09:00 AM</span>
-						<h3 class="activity-title">Morning Rays</h3>
+						<span class="time">08:00 AM</span>
+						<h3 class="activity-title">Your ride is ready</h3>
 						<p class="description">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-							tenetur? Odio eius eveniet corporis alias qui distinctio quia
-							necessitatibus suscipit deleniti quisquam facere optio
+							Mi hể. Qua đón làng đi nượn ^^. <br />
+							Nàng chuẩn bị bộ cánh thật choáy để chụp ẻnh nhé. Oh, maybe
+							something tôn cổ,
+							<span style="font-size: 0.65rem"
+								>(like áo quây (idk?). Áo trơn nhé)</span
+							>. Don't forget khuyên tai ✨
+							<br />
+							<span style="font-size: 1.5rem">˚˖𓍢ִ໋💅🏻✧˚.🎀༘⋆</span>
 						</p>
 					</div>
 				</div>
 
-				<!-- 10:00 AM - THE GIFT -->
+				<!-- 11:00 AM -->
+				<div class="timeline-item">
+					<div class="timeline-dot"></div>
+					<div class="timeline-content">
+						<span class="time">09:00 AM</span>
+						<h3 class="activity-title">Breakfast</h3>
+						<p class="description">
+							Try out the taste of
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								href="https://www.google.com/maps/dir/?api=1&destination=Bún+Bò+Huế+Vạn+Hương"
+								>Bún bò Huế Vạn Hương</a
+							>. Bún bò trong biệt thự Pháp cổ 500m². <br />
+							Nhoàm nhoàm. <span style="font-size: 1.5rem">😋😋</span>
+						</p>
+					</div>
+				</div>
+
+				<!-- 10:00 AM  -->
 				<div class="timeline-item swan-trigger">
 					<div class="timeline-dot"></div>
 					<div class="swan-overlay">
@@ -610,68 +663,66 @@
 
 					<div class="timeline-content">
 						<span class="time">10:00 AM</span>
-						<h3 class="activity-title">A Sapphire Swan</h3>
+						<h3 class="activity-title">Coffee</h3>
 						<p class="description">
-							A moment just for us. A gift to match your grace—a delicate White
-							Rhodium Swan, holding a deep Blue Stone at its heart. A symbol of
-							beauty and fidelity.
-						</p>
-					</div>
-				</div>
-
-				<!-- 11:00 AM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">11:00 AM</span>
-						<h3 class="activity-title">PTB & MSB</h3>
-						<p class="description">
-							A gentle walk through the Botanical Gardens. Watching the swans
-							glide on the lake, admiring their effortless elegance and poise.
-						</p>
-					</div>
-				</div>
-
-				<!-- 11:00 AM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">11:00 AM</span>
-						<h3 class="activity-title">PTB & MSB</h3>
-						<p class="description">
-							A gentle walk through the Botanical Gardens. Watching the swans
-							glide on the lake, admiring their effortless elegance and poise.
-						</p>
-					</div>
-				</div>
-
-				<!-- 01:00 PM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">01:00 PM</span>
-						<h3 class="activity-title">HDL</h3>
-						<p class="description">
-							A table for two overlooking the river. Fresh seafood,
+							Check out the coffee of
 							<a
 								target="_blank"
 								rel="noopener noreferrer"
-								href="https://maps.app.goo.gl/52m96uBUK3pgCNEk6"
-								>here</a
-							>, sparkling water, and the cool breeze carrying our conversation.
+								href="https://www.google.com/maps/dir/?api=1&destination=Blank+Space+-+Workspace+%26+Coffee"
+								>Blank Space Coffee</a
+							>. Làm bộ ảnh tất liên. Nhưng mà font kéck mềnh cứ phải ⚫⬛ mới
+							được. Ngon luôn. <br />
+							<span style="font-size: 1.5rem">☕˙✧˖°📸⋆｡˚☕</span>
 						</p>
 					</div>
 				</div>
 
-				<!-- 03:00 PM -->
+				<!-- 11:00 AM -->
 				<div class="timeline-item">
 					<div class="timeline-dot"></div>
 					<div class="timeline-content">
-						<span class="time">03:00 PM</span>
-						<h3 class="activity-title">TB</h3>
+						<span class="time">11:00 AM</span>
+						<h3 class="activity-title">Photobooth & Musicbox</h3>
 						<p class="description">
-							Visiting the Modern Art Gallery. Finding inspiration in the colors
-							and forms, enjoying the quiet intimacy of the exhibits.
+							More fun back at
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								href="https://www.google.com/maps/dir/?api=1&destination=Vincom+Center+Trần+Duy+Hưng"
+								>Vincom TDH</a
+							>. Cho em xin ngay bài Chiều lên bản Thượng. <br />
+							<span style="font-size: 1.5rem">[◉¯]🎤‧₊˚♪ 𝄞₊˚⊹♬ ♪ ٩(ˊᗜˋ*)و</span>
+						</p>
+					</div>
+				</div>
+
+				<!-- 12:00 PM -->
+				<div class="timeline-item">
+					<div class="timeline-dot"></div>
+					<div class="timeline-content">
+						<span class="time">12:00 PM</span>
+						<h3 class="activity-title">Haidilao</h3>
+						<p class="description">
+							2 bát tái chín, chín chỗ tái. À nhầm, 1 nồi, 2 nước, 2 chấm, 2
+							cơm, 1 bò. Nghĩ thôi đã thèm hj. Đẫm nhệ và nhũng nhịu. <br />
+							<span style="font-size: 1.5rem">🍝🥢♡ ༘*.ﾟ (っ˘ڡ˘ς)</span>
+						</p>
+					</div>
+				</div>
+
+				<!-- 02:00 PM -->
+				<div class="timeline-item">
+					<div class="timeline-dot"></div>
+					<div class="timeline-content">
+						<span class="time">02:00 PM</span>
+						<h3 class="activity-title">khrooo... 😴😴</h3>
+						<p class="description">
+							noon noon. <br />
+							sleep tight. <br />
+							sweet dreams. <br />
+							nhob nhob. <br />
+							<span style="font-size: 1.5rem">‎꜀( ꜆-ࡇ-)꜆ ᶻ 𝗓 𐰁</span>
 						</p>
 					</div>
 				</div>
@@ -681,6 +732,38 @@
 		<!-- SPARKLE SCRIPT -->
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
+				// Prevent a single orphan word on subtitle line 2:
+				// keep the last two words together with a non‑breaking space.
+				const subtitle = document.querySelector('.subtitle');
+				if (subtitle) {
+					const text = (subtitle.textContent || '').trim();
+					const lastSpace = text.lastIndexOf(' ');
+					if (lastSpace !== -1) {
+						subtitle.textContent =
+							text.slice(0, lastSpace) + '\u00A0' + text.slice(lastSpace + 1);
+					}
+				}
+
+				// Wait until all images AND fonts are fully loaded
+				// before revealing the content (fade out overlay).
+				window.addEventListener('load', () => {
+					const overlay = document.getElementById('page-transition');
+					if (!overlay) return;
+
+					const finish = () => {
+						overlay.style.opacity = '0';
+						setTimeout(() => {
+							overlay.remove();
+						}, 900);
+					};
+
+					if (document.fonts && document.fonts.ready) {
+						document.fonts.ready.then(finish).catch(finish);
+					} else {
+						finish();
+					}
+				});
+
 				// 1. CURSOR TRAIL SPARKLES
 				let throttle = false;
 				document.addEventListener('mousemove', (e) => {
@@ -763,23 +846,27 @@
 					}, 2000);
 				}
 
-				// 3. SWAN TRANSFORMATION ON CLICK
+				// 3. SWAN TRANSFORMATION ON CLICK (dot only)
 				const trigger = document.querySelector('.swan-trigger');
 				if (trigger) {
-					trigger.addEventListener('click', (e) => {
-						// Toggle swan transformation
-						trigger.classList.toggle('swan-active');
+					const dot = trigger.querySelector('.timeline-dot');
+					if (dot) {
+						dot.addEventListener('click', (e) => {
+							e.stopPropagation();
+							// Toggle swan transformation
+							trigger.classList.toggle('swan-active');
 
-						// Spawn sparkles on click
-						for (let i = 0; i < 30; i++) {
-							setTimeout(() => {
-								createSparkle(
-									e.pageX + (Math.random() * 200 - 100),
-									e.pageY + (Math.random() * 200 - 100),
-								);
-							}, i * 30);
-						}
-					});
+							// Spawn sparkles on click
+							for (let i = 0; i < 30; i++) {
+								setTimeout(() => {
+									createSparkle(
+										e.pageX + (Math.random() * 200 - 100),
+										e.pageY + (Math.random() * 200 - 100),
+									);
+								}, i * 30);
+							}
+						});
+					}
 				}
 			});
 		</script>
