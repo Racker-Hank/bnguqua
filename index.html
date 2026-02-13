@@ -1,741 +1,706 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Ur corgi has something to say...</title>
-		<link
-			rel="icon"
-			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			:root {
-				--bg-color: #f8fafc;
-				--accent-blue: #2563eb;
-				--accent-silver: #cbd5e1;
-				--text-primary: #1e293b;
-				--text-secondary: #64748b;
-				--card-bg: rgba(255, 255, 255, 0.85);
-				--gradient-silver: linear-gradient(
-					135deg,
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Ur corgi has something to say...</title>
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<!-- Speculative preloading for next page -->
+	<link rel="prefetch" href="./timeline.html" />
+	<link rel="prefetch" href="./resource/images/mi here.jpg" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+		rel="stylesheet" />
+	<style>
+		:root {
+			--bg-color: #f8fafc;
+			--accent-blue: #2563eb;
+			--accent-silver: #cbd5e1;
+			--text-primary: #1e293b;
+			--text-secondary: #64748b;
+			--card-bg: rgba(255, 255, 255, 0.85);
+			--gradient-silver: linear-gradient(135deg,
 					#e2e8f0 0%,
 					#ffffff 50%,
-					#e2e8f0 100%
-				);
-				--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-				--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+					#e2e8f0 100%);
+			--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+			--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+		}
+
+		* {
+			scrollbar-width: none;
+			/* Firefox */
+			-ms-overflow-style: none;
+			/* IE/Edge */
+		}
+
+		*::-webkit-scrollbar {
+			display: none;
+			/* Chrome/Safari/Opera */
+		}
+
+		body {
+			margin: 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: var(--bg-color);
+			color: var(--text-primary);
+			overflow: hidden;
+			height: 100vh;
+			width: 100vw;
+			background-image:
+				radial-gradient(circle at 10% 20%,
+					rgba(37, 99, 235, 0.05) 0%,
+					transparent 40%),
+				radial-gradient(circle at 90% 80%,
+					rgba(148, 163, 184, 0.1) 0%,
+					transparent 40%);
+		}
+
+		.center {
+			display: grid;
+			place-items: center;
+			height: 100vh;
+			position: relative;
+			z-index: 10;
+		}
+
+		.content {
+			padding: 3rem;
+			background: var(--card-bg);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-radius: 2px;
+			box-shadow: var(--shadow);
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.6);
+			max-width: 500px;
+			width: 90%;
+		}
+
+		h1 {
+			margin-top: 0;
+			font-family: 'Outfit', sans-serif;
+			font-weight: 700;
+			font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+			letter-spacing: 0.02em;
+			margin-bottom: 0.5rem;
+			background: linear-gradient(45deg, #1e293b, #3b82f6);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			text-transform: uppercase;
+		}
+
+		p {
+			color: var(--text-secondary);
+			line-height: 1.6;
+			margin: 0 0 2rem 0;
+			font-family: 'Pinyon Script', cursive;
+			font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+			letter-spacing: 0.1em;
+			white-space: nowrap;
+			max-width: 100%;
+		}
+
+		.button-group {
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+		}
+
+		button {
+			padding: 0.75rem 2rem;
+			border-radius: 2px;
+			border: none;
+			font-weight: 600;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+			font-family: 'Montserrat', sans-serif;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.btn-yes {
+			background: var(--accent-blue);
+			color: white;
+		}
+
+		.btn-yes:hover {
+			background: #1d4ed8;
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+		}
+
+		.btn-no {
+			background: white;
+			color: var(--accent-blue);
+			border: 1px solid var(--accent-silver);
+		}
+
+		.btn-no:hover {
+			background: #f8fafc;
+			border-color: var(--accent-blue);
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(148, 163, 184, 0.2);
+		}
+
+		/* Floating Element - mimicking Polaroid style */
+		.floating-element {
+			position: absolute;
+			background: white;
+			padding: 8px 8px 30px 8px;
+			/* Polaroid padding */
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			pointer-events: none;
+			z-index: 1;
+			transition:
+				transform 0.1s linear,
+				opacity 0.3s ease;
+			/* Added opacity transition */
+			opacity: 0.9;
+			/* No border-radius on the container to match sharp polaroid corners or slight rounding */
+			border-radius: 2px;
+			will-change: transform, opacity;
+		}
+
+		.floating-element img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			filter: sepia(20%) contrast(90%);
+			/* Vintage feel */
+		}
+
+		.image-index {
+			position: absolute;
+			bottom: 8px;
+			right: 8px;
+			background: transparent;
+			color: #94a3b8;
+			/* Hand-written looking color? */
+			padding: 0;
+			border-radius: 0;
+			font-size: 14px;
+			font-family: 'Outfit', sans-serif;
+			font-weight: 600;
+			backdrop-filter: none;
+			box-shadow: none;
+		}
+
+		/* Chat Bubble Styles */
+		.chat-bubble {
+			position: absolute;
+			top: -40px;
+			left: 50%;
+			/* Center relative to image */
+			transform: translateX(-50%) scale(0) rotate(-10deg);
+			transform-origin: bottom center;
+			background: white;
+			padding: 6px 12px;
+			border-radius: 12px;
+			border-bottom-left-radius: 4px;
+			/* Callout shape style */
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			font-size: 14px;
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 500;
+			color: var(--text-primary);
+			opacity: 0;
+			transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+			/* Bouncy pop */
+			white-space: nowrap;
+			z-index: 20;
+			border: 1px solid var(--accent-silver);
+		}
+
+		.floating-element.celebrating .chat-bubble {
+			opacity: 1;
+			transform: translateX(-50%) scale(1) rotate(0deg);
+			top: -50px;
+			/* Float up slightly */
+		}
+
+		.ghost-btn {
+			position: fixed;
+			pointer-events: none;
+			z-index: 1000;
+			transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+		}
+
+		.ghost-btn.flying {
+			transform: translate(130px, -100vh) rotate(720deg) scale(0.5);
+			opacity: 0;
+		}
+
+		/* Sparkle Element for JS */
+		.sparkle-particle {
+			position: absolute;
+			pointer-events: none;
+			background: radial-gradient(circle, #fff 10%, transparent 60%);
+			border-radius: 50%;
+			z-index: 1000;
+			opacity: 0;
+			animation: sparkleAnim 1.5s ease-out forwards;
+		}
+
+		@keyframes sparkleAnim {
+			0% {
+				transform: scale(0) rotate(0deg);
+				opacity: 0;
 			}
 
-			* {
-				scrollbar-width: none;
-				/* Firefox */
-				-ms-overflow-style: none;
-				/* IE/Edge */
+			50% {
+				transform: scale(1.5) rotate(180deg);
+				opacity: 1;
 			}
 
-			*::-webkit-scrollbar {
-				display: none;
-				/* Chrome/Safari/Opera */
+			100% {
+				transform: scale(0) rotate(360deg);
+				opacity: 0;
+			}
+		}
+
+		.ambient-sparkle {
+			position: absolute;
+			width: 4px;
+			height: 4px;
+			background: white;
+			border-radius: 50%;
+			box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
+			animation: twinkleAmbient 4s infinite ease-in-out;
+			z-index: 1;
+		}
+
+		@keyframes twinkleAmbient {
+
+			0%,
+			100% {
+				transform: scale(0);
+				opacity: 0;
 			}
 
+			50% {
+				transform: scale(1.2);
+				opacity: 0.8;
+			}
+		}
+
+		/* Transition Overlay */
+		#transition-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #f8fafc;
+			/* Match Untitled-2 bg color */
+			z-index: 9999;
+			opacity: 1;
+			pointer-events: all;
+			transition: opacity 1.2s ease-in-out;
+		}
+
+		/* Responsive layout adjustments */
+		@media (max-width: 1024px) {
+			.floating-element {
+				transform: scale(0.85);
+			}
+		}
+
+		@media (max-width: 768px) {
 			body {
-				margin: 0;
-				font-family: 'Montserrat', sans-serif;
-				background-color: var(--bg-color);
-				color: var(--text-primary);
 				overflow: hidden;
-				height: 100vh;
-				width: 100vw;
-				background-image:
-					radial-gradient(
-						circle at 10% 20%,
-						rgba(37, 99, 235, 0.05) 0%,
-						transparent 40%
-					),
-					radial-gradient(
-						circle at 90% 80%,
-						rgba(148, 163, 184, 0.1) 0%,
-						transparent 40%
-					);
+			}
+
+			/* Simplify background photos on small screens */
+			.floating-element {
+				display: none;
 			}
 
 			.center {
-				display: grid;
-				place-items: center;
-				height: 100vh;
-				position: relative;
-				z-index: 10;
+				padding: 1.5rem;
 			}
 
 			.content {
-				padding: 3rem;
-				background: var(--card-bg);
-				backdrop-filter: blur(12px);
-				-webkit-backdrop-filter: blur(12px);
-				border-radius: 2px;
-				box-shadow: var(--shadow);
-				text-align: center;
-				border: 1px solid rgba(255, 255, 255, 0.6);
-				max-width: 500px;
-				width: 90%;
+				width: 100%;
+				max-width: 420px;
+				padding: 2rem 1.5rem;
 			}
 
 			h1 {
-				margin-top: 0;
-				font-family: 'Outfit', sans-serif;
-				font-weight: 700;
-				font-size: clamp(1.6rem, 4.5vw, 2.5rem);
-				letter-spacing: 0.02em;
-				margin-bottom: 0.5rem;
-				background: linear-gradient(45deg, #1e293b, #3b82f6);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
-				text-transform: uppercase;
+				font-size: clamp(1.4rem, 6vw, 2rem);
 			}
 
 			p {
-				color: var(--text-secondary);
-				line-height: 1.6;
-				margin: 0 0 2rem 0;
-				font-family: 'Pinyon Script', cursive;
-				font-size: clamp(1.2rem, 3.8vw, 1.5rem);
-				letter-spacing: 0.1em;
-				white-space: nowrap;
-				max-width: 100%;
+				font-size: clamp(1.1rem, 4.5vw, 1.4rem);
 			}
 
 			.button-group {
-				display: flex;
-				gap: 1rem;
-				justify-content: center;
+				flex-direction: column;
 			}
 
 			button {
-				padding: 0.75rem 2rem;
-				border-radius: 2px;
-				border: none;
-				font-weight: 600;
-				font-size: 1rem;
-				cursor: pointer;
-				transition: all 0.3s ease;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-				font-family: 'Montserrat', sans-serif;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-			}
-
-			.btn-yes {
-				background: var(--accent-blue);
-				color: white;
-			}
-
-			.btn-yes:hover {
-				background: #1d4ed8;
-				transform: translateY(-2px);
-				box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
-			}
-
-			.btn-no {
-				background: white;
-				color: var(--accent-blue);
-				border: 1px solid var(--accent-silver);
-			}
-
-			.btn-no:hover {
-				background: #f8fafc;
-				border-color: var(--accent-blue);
-				transform: translateY(-2px);
-				box-shadow: 0 6px 12px rgba(148, 163, 184, 0.2);
-			}
-
-			/* Floating Element - mimicking Polaroid style */
-			.floating-element {
-				position: absolute;
-				background: white;
-				padding: 8px 8px 30px 8px;
-				/* Polaroid padding */
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-				pointer-events: none;
-				z-index: 1;
-				transition:
-					transform 0.1s linear,
-					opacity 0.3s ease;
-				/* Added opacity transition */
-				opacity: 0.9;
-				/* No border-radius on the container to match sharp polaroid corners or slight rounding */
-				border-radius: 2px;
-			}
-
-			.floating-element img {
 				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
-				filter: sepia(20%) contrast(90%);
-				/* Vintage feel */
+				justify-content: center;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.content {
+				max-width: 360px;
+				padding: 1.75rem 1.25rem;
 			}
 
-			.image-index {
-				position: absolute;
-				bottom: 8px;
-				right: 8px;
-				background: transparent;
-				color: #94a3b8;
-				/* Hand-written looking color? */
-				padding: 0;
-				border-radius: 0;
-				font-size: 14px;
-				font-family: 'Outfit', sans-serif;
-				font-weight: 600;
-				backdrop-filter: none;
-				box-shadow: none;
+			h1 {
+				font-size: clamp(1.3rem, 7vw, 1.8rem);
 			}
 
-			/* Chat Bubble Styles */
-			.chat-bubble {
-				position: absolute;
-				top: -40px;
-				left: 50%;
-				/* Center relative to image */
-				transform: translateX(-50%) scale(0) rotate(-10deg);
-				transform-origin: bottom center;
-				background: white;
-				padding: 6px 12px;
-				border-radius: 12px;
-				border-bottom-left-radius: 4px;
-				/* Callout shape style */
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-				font-size: 14px;
-				font-family: 'Montserrat', sans-serif;
-				font-weight: 500;
-				color: var(--text-primary);
-				opacity: 0;
-				transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-				/* Bouncy pop */
-				white-space: nowrap;
-				z-index: 20;
-				border: 1px solid var(--accent-silver);
+			p {
+				font-size: clamp(1rem, 4.2vw, 1.3rem);
 			}
+		}
+	</style>
+</head>
 
-			.floating-element.celebrating .chat-bubble {
-				opacity: 1;
-				transform: translateX(-50%) scale(1) rotate(0deg);
-				top: -50px;
-				/* Float up slightly */
-			}
+<body>
+	<!-- 1. Top Left -->
+	<div class="floating-element" style="top: 10%; left: 8%; width: 240px; height: 240px" data-speed="-2">
+		<div class="chat-bubble">mizzubibi</div>
+		<img src="./resource/images/mizzubibi.jpg" alt="Nature" decoding="async" fetchpriority="high" />
+		<div class="image-index">0</div>
+	</div>
 
-			.ghost-btn {
-				position: fixed;
-				pointer-events: none;
-				z-index: 1000;
-				transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-			}
+	<!-- 2. Bottom Left -->
+	<div class="floating-element" style="bottom: 15%; left: 15%; width: 250px; height: 250px" data-speed="4">
+		<div class="chat-bubble">nhoooo</div>
+		<img src="./resource/images/nhoooo.jpeg" alt="Landscape" decoding="async" loading="lazy" />
+		<div class="image-index">2</div>
+	</div>
 
-			.ghost-btn.flying {
-				transform: translate(130px, -100vh) rotate(720deg) scale(0.5);
-				opacity: 0;
-			}
+	<!-- 3. Top Right -->
+	<div class="floating-element" style="top: 15%; right: 15%; width: 120px; height: 120px" data-speed="2">
+		<div class="chat-bubble">babe?</div>
+		<img src="./resource/images/babe.jpg" alt="Beach" decoding="async" loading="lazy" />
+		<div class="image-index">3</div>
+	</div>
 
-			/* Sparkle Element for JS */
-			.sparkle-particle {
-				position: absolute;
-				pointer-events: none;
-				background: radial-gradient(circle, #fff 10%, transparent 60%);
-				border-radius: 50%;
-				z-index: 1000;
-				opacity: 0;
-				animation: sparkleAnim 1.5s ease-out forwards;
-			}
+	<!-- 4. Bottom Right -->
+	<div class="floating-element" style="bottom: 5%; right: 12%; width: 230px; height: 300px" data-speed="-3">
+		<div class="chat-bubble">lavli</div>
+		<img src="./resource/images/lavli.jpg" alt="Ocean" decoding="async" loading="lazy" />
+		<div class="image-index">4</div>
+	</div>
 
-			@keyframes sparkleAnim {
-				0% {
-					transform: scale(0) rotate(0deg);
-					opacity: 0;
-				}
+	<!-- 5. Top Center -->
+	<div class="floating-element" style="top: 5%; left: 40%; width: 160px; height: 160px" data-speed="5">
+		<div class="chat-bubble">buh bai boo</div>
+		<img src="./resource/images/buh bai boo.jpg" alt="Waterfall" decoding="async" loading="lazy" />
+		<div class="image-index">4</div>
+	</div>
 
-				50% {
-					transform: scale(1.5) rotate(180deg);
-					opacity: 1;
-				}
+	<!-- 6. Bottom Center -->
+	<div class="floating-element" style="bottom: 2%; right: 40%; width: 165px; height: 165px" data-speed="-4">
+		<div class="chat-bubble">nhob nhob</div>
+		<img src="./resource/images/nhob nhob.jpg" alt="River" decoding="async" loading="lazy" />
+		<div class="image-index">2</div>
+	</div>
 
-				100% {
-					transform: scale(0) rotate(360deg);
-					opacity: 0;
-				}
-			}
+	<!-- 7. Middle Left -->
+	<div class="floating-element" style="top: 45%; left: 3%; width: 200px; height: 200px" data-speed="3">
+		<div class="chat-bubble">khrooo</div>
+		<img src="./resource/images/khrooo.jpg" alt="Forest" decoding="async" loading="lazy" />
+		<div class="image-index">-1</div>
+	</div>
 
-			.ambient-sparkle {
-				position: absolute;
-				width: 4px;
-				height: 4px;
-				background: white;
-				border-radius: 50%;
-				box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
-				animation: twinkleAmbient 4s infinite ease-in-out;
-				z-index: 1;
-			}
+	<!-- 8. Middle Right -->
+	<div class="floating-element" style="top: 27%; right: 2%; width: 200px; height: 350px" data-speed="-5">
+		<div class="chat-bubble">itadakiđớp</div>
+		<img src="./resource/images/itadakidop.jpg" alt="Grass" decoding="async" loading="lazy" />
+		<div class="image-index">1</div>
+	</div>
 
-			@keyframes twinkleAmbient {
-				0%,
-				100% {
-					transform: scale(0);
-					opacity: 0;
-				}
+	<!-- 9. Inner Left Top -->
+	<div class="floating-element" style="top: 15%; left: 24%; width: 160px; height: 280px" data-speed="6">
+		<div class="chat-bubble">naee</div>
+		<img src="./resource/images/naee.jpg" alt="Mountain" decoding="async" loading="lazy" />
+		<div class="image-index">4</div>
+	</div>
 
-				50% {
-					transform: scale(1.2);
-					opacity: 0.8;
-				}
-			}
+	<!-- 10. Inner Right Bottom -->
+	<div class="floating-element" style="bottom: 25%; right: 25%; width: 135px; height: 135px" data-speed="-6">
+		<div class="chat-bubble">zeeeee</div>
+		<img src="./resource/images/zeeeee.JPG" alt="City" decoding="async" loading="lazy" />
+		<div class="image-index">0</div>
+	</div>
 
-			/* Transition Overlay */
-			#transition-overlay {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: #f8fafc;
-				/* Match Untitled-2 bg color */
-				z-index: 9999;
-				opacity: 1;
-				pointer-events: all;
-				transition: opacity 1.2s ease-in-out;
-			}
+	<!-- 11. Bottom Center Left -->
+	<div class="floating-element" style="bottom: 8%; left: 37%; width: 135px; height: 135px" data-speed="1.5">
+		<div class="chat-bubble">akay</div>
+		<img src="./resource/images/akay.jpg" alt="Shoes" decoding="async" loading="lazy" />
+		<div class="image-index">4</div>
+	</div>
 
-			/* Responsive layout adjustments */
-			@media (max-width: 1024px) {
-				.floating-element {
-					transform: scale(0.85);
-				}
-			}
+	<!-- 12. Top Center Right -->
+	<div class="floating-element" style="top: 8%; right: 25%; width: 305px; height: 200px" data-speed="-2.5">
+		<div class="chat-bubble">wieee</div>
+		<img src="./resource/images/wieee.jpg" alt="Book" decoding="async" loading="lazy" />
+		<div class="image-index">5</div>
+	</div>
 
-			@media (max-width: 768px) {
-				body {
-					overflow: hidden;
-				}
-
-				/* Simplify background photos on small screens */
-				.floating-element {
-					display: none;
-				}
-
-				.center {
-					padding: 1.5rem;
-				}
-
-				.content {
-					width: 100%;
-					max-width: 420px;
-					padding: 2rem 1.5rem;
-				}
-
-				h1 {
-					font-size: clamp(1.4rem, 6vw, 2rem);
-				}
-
-				p {
-					font-size: clamp(1.1rem, 4.5vw, 1.4rem);
-				}
-
-				.button-group {
-					flex-direction: column;
-				}
-
-				button {
-					width: 100%;
-					justify-content: center;
-				}
-			}
-
-			@media (max-width: 480px) {
-				.content {
-					max-width: 360px;
-					padding: 1.75rem 1.25rem;
-				}
-
-				h1 {
-					font-size: clamp(1.3rem, 7vw, 1.8rem);
-				}
-
-				p {
-					font-size: clamp(1rem, 4.2vw, 1.3rem);
-				}
-			}
-		</style>
-	</head>
-
-	<body>
-		<!-- 1. Top Left -->
-		<div
-			class="floating-element"
-			style="top: 10%; left: 8%; width: 240px; height: 240px"
-			data-speed="-2"
-		>
-			<div class="chat-bubble">mizzubibi</div>
-			<img src="./resource/images/mizzubibi.jpg" alt="Nature" />
-			<div class="image-index">0</div>
-		</div>
-
-		<!-- 2. Bottom Left -->
-		<div
-			class="floating-element"
-			style="bottom: 15%; left: 15%; width: 250px; height: 250px"
-			data-speed="4"
-		>
-			<div class="chat-bubble">nhoooo</div>
-			<img src="./resource/images/nhoooo.jpeg" alt="Landscape" />
-			<div class="image-index">2</div>
-		</div>
-
-		<!-- 3. Top Right -->
-		<div
-			class="floating-element"
-			style="top: 15%; right: 15%; width: 120px; height: 120px"
-			data-speed="2"
-		>
-			<div class="chat-bubble">babe?</div>
-			<img src="./resource/images/babe.jpg" alt="Beach" />
-			<div class="image-index">3</div>
-		</div>
-
-		<!-- 4. Bottom Right -->
-		<div
-			class="floating-element"
-			style="bottom: 5%; right: 12%; width: 230px; height: 300px"
-			data-speed="-3"
-		>
-			<div class="chat-bubble">lavli</div>
-			<img src="./resource/images/lavli.jpg" alt="Ocean" />
-			<div class="image-index">4</div>
-		</div>
-
-		<!-- 5. Top Center -->
-		<div
-			class="floating-element"
-			style="top: 5%; left: 40%; width: 160px; height: 160px"
-			data-speed="5"
-		>
-			<div class="chat-bubble">buh bai boo</div>
-			<img src="./resource/images/buh bai boo.jpg" alt="Waterfall" />
-			<div class="image-index">4</div>
-		</div>
-
-		<!-- 6. Bottom Center -->
-		<div
-			class="floating-element"
-			style="bottom: 2%; right: 40%; width: 165px; height: 165px"
-			data-speed="-4"
-		>
-			<div class="chat-bubble">nhob nhob</div>
-			<img src="./resource/images/nhob nhob.jpg" alt="River" />
-			<div class="image-index">2</div>
-		</div>
-
-		<!-- 7. Middle Left -->
-		<div
-			class="floating-element"
-			style="top: 45%; left: 3%; width: 200px; height: 200px"
-			data-speed="3"
-		>
-			<div class="chat-bubble">khrooo</div>
-			<img src="./resource/images/khrooo.jpg" alt="Forest" />
-			<div class="image-index">-1</div>
-		</div>
-
-		<!-- 8. Middle Right -->
-		<div
-			class="floating-element"
-			style="top: 27%; right: 2%; width: 200px; height: 350px"
-			data-speed="-5"
-		>
-			<div class="chat-bubble">itadakiđớp</div>
-			<img src="./resource/images/itadakidop.jpg" alt="Grass" />
-			<div class="image-index">1</div>
-		</div>
-
-		<!-- 9. Inner Left Top -->
-		<div
-			class="floating-element"
-			style="top: 15%; left: 24%; width: 160px; height: 280px"
-			data-speed="6"
-		>
-			<div class="chat-bubble">naee</div>
-			<img src="./resource/images/naee.jpg" alt="Mountain" />
-			<div class="image-index">4</div>
-		</div>
-
-		<!-- 10. Inner Right Bottom -->
-		<div
-			class="floating-element"
-			style="bottom: 25%; right: 25%; width: 135px; height: 135px"
-			data-speed="-6"
-		>
-			<div class="chat-bubble">zeeeee</div>
-			<img src="./resource/images/zeeeee.JPG" alt="City" />
-			<div class="image-index">0</div>
-		</div>
-
-		<!-- 11. Bottom Center Left -->
-		<div
-			class="floating-element"
-			style="bottom: 8%; left: 37%; width: 135px; height: 135px"
-			data-speed="1.5"
-		>
-			<div class="chat-bubble">akay</div>
-			<img src="./resource/images/akay.jpg" alt="Shoes" />
-			<div class="image-index">4</div>
-		</div>
-
-		<!-- 12. Top Center Right -->
-		<div
-			class="floating-element"
-			style="top: 8%; right: 25%; width: 305px; height: 200px"
-			data-speed="-2.5"
-		>
-			<div class="chat-bubble">wieee</div>
-			<img src="./resource/images/wieee.jpg" alt="Book" />
-			<div class="image-index">5</div>
-		</div>
-
-		<div class="center">
-			<div class="content">
-				<h1>
-					Anniversary <br />
-					& Valentine
-				</h1>
-				<p>💚 Will you be my Valent-anni? 💚</p>
-				<div class="button-group">
-					<button class="btn-yes">Yes</button>
-					<button class="btn-no transition-trigger">No</button>
-				</div>
+	<div class="center">
+		<div class="content">
+			<h1>
+				Anniversary <br />
+				& Valentine
+			</h1>
+			<p>💚 Will you be my Valent-anni? 💚</p>
+			<div class="button-group">
+				<button class="btn-yes">Yes</button>
+				<button class="btn-no transition-trigger">No</button>
 			</div>
 		</div>
+	</div>
 
-		<!-- Transition Overlay Element -->
-		<div id="transition-overlay"></div>
+	<!-- Transition Overlay Element -->
+	<div id="transition-overlay"></div>
 
-		<script>
-			// Wait for all images and fonts before revealing content
-			window.addEventListener('load', () => {
-				const overlay = document.getElementById('transition-overlay');
-				if (!overlay) return;
-
-				const finish = () => {
-					overlay.style.opacity = '0';
-					overlay.style.pointerEvents = 'none';
-				};
-
-				if (document.fonts && document.fonts.ready) {
-					document.fonts.ready.then(finish).catch(finish);
-				} else {
-					finish();
-				}
-			});
-
-			// Fix back/forward cache: when returning from timeline,
-			// the page can be restored from bfcache without firing "load".
-			// In that case, hide the overlay immediately.
-			window.addEventListener('pageshow', (event) => {
-				if (!event.persisted) return;
-				const overlay = document.getElementById('transition-overlay');
-				if (!overlay) return;
+	<script>
+		// Reveal content once fonts are ready or after a safe timeout
+		const revealPage = () => {
+			const overlay = document.getElementById('transition-overlay');
+			if (overlay && overlay.style.opacity !== '0') {
 				overlay.style.opacity = '0';
 				overlay.style.pointerEvents = 'none';
-			});
+			}
+		};
 
-			// Handle Page Transition to timeline
-			const transitionOverlay = document.getElementById('transition-overlay');
-			const transitionTriggers = document.querySelectorAll(
-				'.transition-trigger',
-			);
+		// Wait for fonts, but don't block forever
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(revealPage).catch(revealPage);
+		} else {
+			// Fallback if fonts API not supported
+			window.addEventListener('load', revealPage);
+		}
 
-			function navigateWithOverlay() {
-				if (!transitionOverlay) {
-					window.location.href = './timeline.html';
-					return;
+		// Ultimate fallback timeout (2.5s) to ensure user isn't stuck
+		setTimeout(revealPage, 2500);
+
+		// Fix back/forward cache: when returning from timeline,
+		// the page can be restored from bfcache without firing "load".
+		// In that case, hide the overlay immediately.
+		window.addEventListener('pageshow', (event) => {
+			if (!event.persisted) return;
+			const overlay = document.getElementById('transition-overlay');
+			if (!overlay) return;
+			overlay.style.opacity = '0';
+			overlay.style.pointerEvents = 'none';
+		});
+
+		// Handle Page Transition to timeline
+		const transitionOverlay = document.getElementById('transition-overlay');
+		const transitionTriggers = document.querySelectorAll(
+			'.transition-trigger',
+		);
+
+		function navigateWithOverlay() {
+			if (!transitionOverlay) {
+				window.location.href = './timeline.html';
+				return;
+			}
+
+			transitionOverlay.style.opacity = '1';
+			transitionOverlay.style.pointerEvents = 'all';
+
+			setTimeout(() => {
+				window.location.href = './timeline.html';
+			}, 1200); // match CSS transition
+		}
+
+		transitionTriggers.forEach((btn) => {
+			btn.addEventListener('click', navigateWithOverlay);
+		});
+
+		// Handle Yes button - prevent transition and show confirmation
+		const btnYes = document.querySelector('.btn-yes');
+		const btnNo = document.querySelector('.btn-no');
+		const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+		// On mobile: show two stacked "positive" buttons:
+		// top = "Yes", bottom = "Of course!" (styled like Yes)
+		if (isMobile && btnNo) {
+			btnNo.textContent = 'Of course!';
+			btnNo.classList.add('btn-yes');
+		}
+
+		let hasClickedYes = false;
+
+		btnYes.addEventListener(
+			'click',
+			(e) => {
+				if (!hasClickedYes) {
+					e.stopPropagation();
+					e.preventDefault();
+					hasClickedYes = true;
+					btnYes.textContent = isMobile ? 'you sure 👇' : 'you sure 👉';
 				}
+			},
+			true,
+		); // Use capture phase to intercept before transition trigger
 
-				transitionOverlay.style.opacity = '1';
-				transitionOverlay.style.pointerEvents = 'all';
+		// State to prevent flicker
+		let isChanged = false;
 
-				setTimeout(() => {
-					window.location.href = './timeline.html';
-				}, 1200); // match CSS transition
-			}
+		document.addEventListener('mousemove', (e) => {
+			// Skip hover game on touch / small screens
+			if (isMobile) return;
 
-			transitionTriggers.forEach((btn) => {
-				btn.addEventListener('click', navigateWithOverlay);
+			const images = document.querySelectorAll('.floating-element');
+
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
+
+			// Calculate center of screen
+			const rx = window.innerWidth / 2;
+			const ry = window.innerHeight / 2;
+
+			// Floating images logic
+			images.forEach((img) => {
+				const speed = parseFloat(img.getAttribute('data-speed'));
+				const offsetX = (mouseX - rx) / rx;
+				const offsetY = (mouseY - ry) / ry;
+				const x = offsetX * speed * 20;
+				const y = offsetY * speed * 20;
+				img.style.transform = `translate(${x}px, ${y}px)`;
 			});
 
-			// Handle Yes button - prevent transition and show confirmation
-			const btnYes = document.querySelector('.btn-yes');
-			const btnNo = document.querySelector('.btn-no');
-			const isMobile = window.matchMedia('(max-width: 768px)').matches;
+			// Button proximity logic
+			const btnRect = btnNo.getBoundingClientRect();
+			const btnCenterX = btnRect.left + btnRect.width / 2;
+			const btnCenterY = btnRect.top + btnRect.height / 2;
 
-			// On mobile: show two stacked "positive" buttons:
-			// top = "Yes", bottom = "Of course!" (styled like Yes)
-			if (isMobile && btnNo) {
-				btnNo.textContent = 'Of course!';
-				btnNo.classList.add('btn-yes');
+			const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
+
+			// Hysteresis thresholds
+			const triggerDist = 70;
+			const resetDist = 150;
+
+			// Sparkle Effect Logic - added from Untitled-2
+			if (Math.random() > 0.92) {
+				// Random chance to spawn on move so it's not too crazy
+				createSparkle(e.pageX, e.pageY);
 			}
 
-			let hasClickedYes = false;
+			if (!isChanged && dist < triggerDist) {
+				// TRIGGER CHANGE
+				isChanged = true;
 
-			btnYes.addEventListener(
-				'click',
-				(e) => {
-					if (!hasClickedYes) {
-						e.stopPropagation();
-						e.preventDefault();
-						hasClickedYes = true;
-						btnYes.textContent = isMobile ? 'you sure 👇' : 'you sure 👉';
-					}
-				},
-				true,
-			); // Use capture phase to intercept before transition trigger
+				// Add celebration bubbles to images
+				images.forEach((img) => img.classList.add('celebrating'));
 
-			// State to prevent flicker
-			let isChanged = false;
+				// 1. Create Ghost Button
+				const ghost = btnNo.cloneNode(true);
+				ghost.classList.add('ghost-btn');
+				ghost.style.left = `${btnRect.left}px`;
+				ghost.style.top = `${btnRect.top}px`;
+				ghost.style.width = `${btnRect.width}px`;
+				ghost.style.height = `${btnRect.height}px`;
+				ghost.style.margin = '0'; // reset flex margin if any
+				document.body.appendChild(ghost);
 
-			document.addEventListener('mousemove', (e) => {
-				// Skip hover game on touch / small screens
-				if (isMobile) return;
+				// Force reflow
+				ghost.getBoundingClientRect();
 
-				const images = document.querySelectorAll('.floating-element');
-
-				const mouseX = e.clientX;
-				const mouseY = e.clientY;
-
-				// Calculate center of screen
-				const rx = window.innerWidth / 2;
-				const ry = window.innerHeight / 2;
-
-				// Floating images logic
-				images.forEach((img) => {
-					const speed = parseFloat(img.getAttribute('data-speed'));
-					const offsetX = (mouseX - rx) / rx;
-					const offsetY = (mouseY - ry) / ry;
-					const x = offsetX * speed * 20;
-					const y = offsetY * speed * 20;
-					img.style.transform = `translate(${x}px, ${y}px)`;
+				// 2. Animate Ghost
+				requestAnimationFrame(() => {
+					ghost.classList.add('flying');
 				});
 
-				// Button proximity logic
-				const btnRect = btnNo.getBoundingClientRect();
-				const btnCenterX = btnRect.left + btnRect.width / 2;
-				const btnCenterY = btnRect.top + btnRect.height / 2;
-
-				const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
-
-				// Hysteresis thresholds
-				const triggerDist = 70;
-				const resetDist = 150;
-
-				// Sparkle Effect Logic - added from Untitled-2
-				if (Math.random() > 0.92) {
-					// Random chance to spawn on move so it's not too crazy
-					createSparkle(e.pageX, e.pageY);
-				}
-
-				if (!isChanged && dist < triggerDist) {
-					// TRIGGER CHANGE
-					isChanged = true;
-
-					// Add celebration bubbles to images
-					images.forEach((img) => img.classList.add('celebrating'));
-
-					// 1. Create Ghost Button
-					const ghost = btnNo.cloneNode(true);
-					ghost.classList.add('ghost-btn');
-					ghost.style.left = `${btnRect.left}px`;
-					ghost.style.top = `${btnRect.top}px`;
-					ghost.style.width = `${btnRect.width}px`;
-					ghost.style.height = `${btnRect.height}px`;
-					ghost.style.margin = '0'; // reset flex margin if any
-					document.body.appendChild(ghost);
-
-					// Force reflow
-					ghost.getBoundingClientRect();
-
-					// 2. Animate Ghost
-					requestAnimationFrame(() => {
-						ghost.classList.add('flying');
-					});
-
-					// 3. Cleanup Ghost (and match user's longer duration preference if adapted in CSS)
-					setTimeout(() => {
-						ghost.remove();
-					}, 2000); // Changed to 2000ms to match CSS 2s transition
-
-					// 4. Change Real Button
-					btnNo.innerText = 'Of course!';
-					btnNo.classList.remove('btn-no');
-					btnNo.classList.add('btn-yes');
-				} else if (isChanged && dist > resetDist) {
-					// RESET
-					isChanged = false;
-
-					// Remove celebration bubbles
-					images.forEach((img) => img.classList.remove('celebrating'));
-
-					btnNo.innerText = 'No';
-					btnNo.classList.remove('btn-yes');
-					btnNo.classList.add('btn-no');
-				}
-			});
-
-			document.addEventListener('DOMContentLoaded', () => {
-				// 2. AMBIENT BACKGROUND SPARKLES
-				setInterval(() => {
-					const x = Math.random() * document.body.scrollWidth;
-					const y = Math.random() * document.body.scrollHeight;
-					createAmbientSparkle(x, y);
-				}, 500); // Slightly slower than Untitled-2
-			});
-
-			function createSparkle(x, y) {
-				const sparkle = document.createElement('div');
-				sparkle.classList.add('sparkle-particle');
-				document.body.appendChild(sparkle);
-
-				const size = Math.random() * 8 + 4 + 'px';
-				sparkle.style.width = size;
-				sparkle.style.height = size;
-				sparkle.style.left = x + 'px';
-				sparkle.style.top = y + 'px';
-
-				const colors = ['#ffffff', '#cbd5e1', '#2563eb', '#60a5fa', '#ffd700'];
-				const randomColor = colors[Math.floor(Math.random() * colors.length)];
-				sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
-				sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
-
+				// 3. Cleanup Ghost (and match user's longer duration preference if adapted in CSS)
 				setTimeout(() => {
-					sparkle.remove();
-				}, 1500);
+					ghost.remove();
+				}, 2000); // Changed to 2000ms to match CSS 2s transition
+
+				// 4. Change Real Button
+				btnNo.innerText = 'Of course!';
+				btnNo.classList.remove('btn-no');
+				btnNo.classList.add('btn-yes');
+			} else if (isChanged && dist > resetDist) {
+				// RESET
+				isChanged = false;
+
+				// Remove celebration bubbles
+				images.forEach((img) => img.classList.remove('celebrating'));
+
+				btnNo.innerText = 'No';
+				btnNo.classList.remove('btn-yes');
+				btnNo.classList.add('btn-no');
 			}
+		});
 
-			function createAmbientSparkle(x, y) {
-				const sparkle = document.createElement('div');
-				sparkle.classList.add('ambient-sparkle');
-				document.body.appendChild(sparkle);
+		document.addEventListener('DOMContentLoaded', () => {
+			// 2. AMBIENT BACKGROUND SPARKLES
+			setInterval(() => {
+				const x = Math.random() * document.body.scrollWidth;
+				const y = Math.random() * document.body.scrollHeight;
+				createAmbientSparkle(x, y);
+			}, 500); // Slightly slower than Untitled-2
+		});
 
-				const size = Math.random() * 5 + 2 + 'px';
-				sparkle.style.width = size;
-				sparkle.style.height = size;
-				sparkle.style.left = x + 'px';
-				sparkle.style.top = y + 'px';
-				sparkle.style.animationDelay = Math.random() * 2 + 's';
+		function createSparkle(x, y) {
+			const sparkle = document.createElement('div');
+			sparkle.classList.add('sparkle-particle');
+			document.body.appendChild(sparkle);
 
-				setTimeout(() => {
-					sparkle.remove();
-				}, 2000);
-			}
-		</script>
-	</body>
+			const size = Math.random() * 8 + 4 + 'px';
+			sparkle.style.width = size;
+			sparkle.style.height = size;
+			sparkle.style.left = x + 'px';
+			sparkle.style.top = y + 'px';
+
+			const colors = ['#ffffff', '#cbd5e1', '#2563eb', '#60a5fa', '#ffd700'];
+			const randomColor = colors[Math.floor(Math.random() * colors.length)];
+			sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
+			sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
+
+			setTimeout(() => {
+				sparkle.remove();
+			}, 1500);
+		}
+
+		function createAmbientSparkle(x, y) {
+			const sparkle = document.createElement('div');
+			sparkle.classList.add('ambient-sparkle');
+			document.body.appendChild(sparkle);
+
+			const size = Math.random() * 5 + 2 + 'px';
+			sparkle.style.width = size;
+			sparkle.style.height = size;
+			sparkle.style.left = x + 'px';
+			sparkle.style.top = y + 'px';
+			sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+			setTimeout(() => {
+				sparkle.remove();
+			}, 2000);
+		}
+
+		// Register Service Worker for offline support and instant loading
+		// Only register if served via http/https (Service Workers don't work on file://)
+		if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('./sw.js').catch(err => {
+					console.log('ServiceWorker registration failed: ', err);
+				});
+			});
+		}
+	</script>
+</body>
+
 </html>

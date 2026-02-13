@@ -7,6 +7,8 @@
 	<title>Our Perfect Day</title>
 	<link rel="icon"
 		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
 		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
 		rel="stylesheet" />
@@ -197,6 +199,8 @@
 			align-items: center;
 			/* cursor: pointer; */
 			/* Indicate interaction */
+			content-visibility: auto;
+			contain-intrinsic-size: 1px 300px;
 		}
 
 		.timeline-dot {
@@ -405,6 +409,7 @@
 			/* Enable hover on photos */
 			cursor: pointer;
 			transform: translate(var(--parallax-x, 0), var(--parallax-y, 0)) var(--base-rotate, rotate(0deg));
+			will-change: transform;
 		}
 
 		.polaroid img {
@@ -567,27 +572,27 @@
 	<!-- POLAROID CONTAINER -->
 	<div class="polaroid-container">
 		<div class="polaroid" data-speed="-2.0">
-			<img src="./resource/images/mi here.jpg" alt="Date Memory 1" />
+			<img src="./resource/images/mi here.jpg" alt="Date Memory 1" decoding="async" fetchpriority="high" />
 			<div class="image-index">-5</div>
 		</div>
 		<div class="polaroid" data-speed="2.5">
-			<img src="./resource/images/breakfast.jpg" alt="Date Memory 2" />
+			<img src="./resource/images/breakfast.jpg" alt="Date Memory 2" decoding="async" loading="lazy" />
 			<div class="image-index">5</div>
 		</div>
 		<div class="polaroid" data-speed="1.8">
-			<img src="./resource/images/coffee.jpeg" alt="Date Memory 3" />
+			<img src="./resource/images/coffee.jpeg" alt="Date Memory 3" decoding="async" loading="lazy" />
 			<div class="image-index">-3</div>
 		</div>
 		<div class="polaroid" data-speed="-3.0">
-			<img src="./resource/images/ptb.jpg" alt="Date Memory 4" />
+			<img src="./resource/images/ptb.jpg" alt="Date Memory 4" decoding="async" loading="lazy" />
 			<div class="image-index">1</div>
 		</div>
 		<div class="polaroid" data-speed="2.2">
-			<img src="./resource/images/hdl.jpg" alt="Date Memory 5" />
+			<img src="./resource/images/hdl.jpg" alt="Date Memory 5" decoding="async" loading="lazy" />
 			<div class="image-index">5</div>
 		</div>
 		<div class="polaroid" data-speed="-1.5">
-			<img src="./resource/images/khrooo-timeline.jpg" alt="Date Memory 6" />
+			<img src="./resource/images/khrooo-timeline.jpg" alt="Date Memory 6" decoding="async" loading="lazy" />
 			<div class="image-index">5</div>
 		</div>
 	</div>
@@ -734,23 +739,32 @@
 				}
 			}
 
-			// Wait until all images AND fonts are fully loaded
-			// before revealing the content (fade out overlay).
-			window.addEventListener('load', () => {
+			// Reveal content once fonts are ready or after a safe timeout
+			const revealPage = () => {
 				const overlay = document.getElementById('page-transition');
-				if (!overlay) return;
-
-				const finish = () => {
+				if (overlay && overlay.style.opacity !== '0') {
 					overlay.style.opacity = '0';
 					setTimeout(() => {
 						overlay.remove();
 					}, 900);
-				};
+				}
+			};
 
-				if (document.fonts && document.fonts.ready) {
-					document.fonts.ready.then(finish).catch(finish);
-				} else {
-					finish();
+			// Wait for fonts, but don't block forever
+			if (document.fonts && document.fonts.ready) {
+				document.fonts.ready.then(revealPage).catch(revealPage);
+			} else {
+				// Fallback if fonts API not supported
+				window.addEventListener('load', revealPage);
+			}
+
+			// Ultimate fallback timeout (2s)
+			setTimeout(revealPage, 2000);
+
+			// Fix back/forward cache
+			window.addEventListener('pageshow', (event) => {
+				if (event.persisted) {
+					revealPage();
 				}
 			});
 
@@ -857,6 +871,16 @@
 						}
 					});
 				}
+			}
+
+			// Register Service Worker for offline support and instant loading
+			// Only register if served via http/https (Service Workers don't work on file://)
+			if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('./sw.js').catch(err => {
+						console.log('ServiceWorker registration failed: ', err);
+					});
+				});
 			}
 		});
 	</script>
