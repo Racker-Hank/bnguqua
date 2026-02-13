@@ -1,897 +1,865 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Our Perfect Day</title>
-		<link
-			rel="icon"
-			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			:root {
-				--bg-color: #f8fafc;
-				--accent-blue: #2563eb;
-				--accent-silver: #cbd5e1;
-				--text-primary: #1e293b;
-				--text-secondary: #64748b;
-				--card-bg: rgba(255, 255, 255, 0.85);
-				--gradient-silver: linear-gradient(
-					135deg,
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Our Perfect Day</title>
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💚</text></svg>" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Outfit:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap"
+		rel="stylesheet" />
+	<style>
+		:root {
+			--bg-color: #f8fafc;
+			--accent-blue: #2563eb;
+			--accent-silver: #cbd5e1;
+			--text-primary: #1e293b;
+			--text-secondary: #64748b;
+			--card-bg: rgba(255, 255, 255, 0.85);
+			--gradient-silver: linear-gradient(135deg,
 					#e2e8f0 0%,
 					#ffffff 50%,
-					#e2e8f0 100%
-				);
-				--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-				--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
-			}
+					#e2e8f0 100%);
+			--gradient-blue: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+			--shadow: 0 10px 30px -5px rgba(148, 163, 184, 0.4);
+		}
 
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				scrollbar-width: none;
-				/* Firefox */
-				-ms-overflow-style: none;
-				/* IE/Edge */
-			}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			scrollbar-width: none;
+			/* Firefox */
+			-ms-overflow-style: none;
+			/* IE/Edge */
+		}
 
-			*::-webkit-scrollbar {
-				display: none;
-				/* Chrome/Safari/Opera */
-			}
+		*::-webkit-scrollbar {
+			display: none;
+			/* Chrome/Safari/Opera */
+		}
 
-			body {
-				font-family: 'Montserrat', sans-serif;
-				background-color: var(--bg-color);
-				color: var(--text-primary);
-				line-height: 1.6;
-				overflow-x: hidden;
-				background-image:
-					radial-gradient(
-						circle at 10% 20%,
-						rgba(37, 99, 235, 0.05) 0%,
-						transparent 40%
-					),
-					radial-gradient(
-						circle at 90% 80%,
-						rgba(148, 163, 184, 0.1) 0%,
-						transparent 40%
-					);
-				min-height: 100vh;
-				cursor: default;
-				position: relative;
-				/* Ensure absolute children stretch full height */
-			}
+		body {
+			font-family: 'Montserrat', sans-serif;
+			background-color: var(--bg-color);
+			color: var(--text-primary);
+			line-height: 1.6;
+			overflow-x: hidden;
+			background-image:
+				radial-gradient(circle at 10% 20%,
+					rgba(37, 99, 235, 0.05) 0%,
+					transparent 40%),
+				radial-gradient(circle at 90% 80%,
+					rgba(148, 163, 184, 0.1) 0%,
+					transparent 40%);
+			min-height: 100vh;
+			cursor: default;
+			position: relative;
+			/* Ensure absolute children stretch full height */
+		}
 
-			.container {
-				max-width: 1000px;
-				margin: 0 auto;
-				padding: 4rem 2rem;
-				position: relative;
-				z-index: 10;
-			}
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 4rem 2rem;
+			position: relative;
+			z-index: 10;
+		}
 
-			header {
-				text-align: center;
-				margin-bottom: 5rem;
-				position: relative;
-				--title-size: clamp(1.6rem, 8vw, 3.5rem);
-			}
+		header {
+			text-align: center;
+			margin-bottom: 5rem;
+			position: relative;
+			--title-size: clamp(1.6rem, 8vw, 3.5rem);
+		}
 
-			h1 {
-				font-family: 'Outfit', sans-serif;
-				font-size: var(--title-size);
-				font-weight: 700;
-				color: var(--text-primary);
-				margin-bottom: 0.5rem;
-				letter-spacing: 0.02em;
-				background: linear-gradient(45deg, #1e293b, #3b82f6);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
-				text-transform: uppercase;
-				position: relative;
-				z-index: 2;
-				white-space: nowrap;
-				max-width: 100%;
-			}
+		h1 {
+			font-family: 'Outfit', sans-serif;
+			font-size: var(--title-size);
+			font-weight: 700;
+			color: var(--text-primary);
+			margin-bottom: 0.5rem;
+			letter-spacing: 0.02em;
+			background: linear-gradient(45deg, #1e293b, #3b82f6);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			text-transform: uppercase;
+			position: relative;
+			z-index: 2;
+			white-space: nowrap;
+			max-width: 100%;
+		}
 
-			.subtitle {
-				font-family: 'Pinyon Script', cursive;
-				font-size: calc(var(--title-size) * 0.5);
-				color: var(--accent-blue);
-				font-weight: 400;
-				letter-spacing: 0.1em;
-				text-transform: none;
-				position: relative;
-				z-index: 2;
-				margin-top: 0.5rem;
-				max-width: 100%;
-				overflow: hidden;
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
-				text-wrap: balance;
-			}
+		.subtitle {
+			font-family: 'Pinyon Script', cursive;
+			font-size: calc(var(--title-size) * 0.5);
+			color: var(--accent-blue);
+			font-weight: 400;
+			letter-spacing: 0.1em;
+			text-transform: none;
+			position: relative;
+			z-index: 2;
+			margin-top: 0.5rem;
+			max-width: 100%;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			text-wrap: balance;
+		}
 
-			/* Sparkle Element for JS */
-			.sparkle-particle {
-				position: absolute;
-				pointer-events: none;
-				background: radial-gradient(circle, #fff 10%, transparent 60%);
-				border-radius: 50%;
-				z-index: 1000;
+		/* Sparkle Element for JS */
+		.sparkle-particle {
+			position: absolute;
+			pointer-events: none;
+			background: radial-gradient(circle, #fff 10%, transparent 60%);
+			border-radius: 50%;
+			z-index: 1000;
+			opacity: 0;
+			animation: sparkleAnim 1.5s ease-out forwards;
+		}
+
+		@keyframes sparkleAnim {
+			0% {
+				transform: scale(0) rotate(0deg);
 				opacity: 0;
-				animation: sparkleAnim 1.5s ease-out forwards;
 			}
 
-			@keyframes sparkleAnim {
-				0% {
-					transform: scale(0) rotate(0deg);
-					opacity: 0;
-				}
-
-				50% {
-					transform: scale(1.5) rotate(180deg);
-					opacity: 1;
-				}
-
-				100% {
-					transform: scale(0) rotate(360deg);
-					opacity: 0;
-				}
+			50% {
+				transform: scale(1.5) rotate(180deg);
+				opacity: 1;
 			}
 
-			.ambient-sparkle {
-				position: absolute;
-				width: 4px;
-				height: 4px;
-				background: white;
-				border-radius: 50%;
-				box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
-				animation: twinkleAmbient 4s infinite ease-in-out;
-				z-index: 1;
+			100% {
+				transform: scale(0) rotate(360deg);
+				opacity: 0;
+			}
+		}
+
+		.ambient-sparkle {
+			position: absolute;
+			width: 4px;
+			height: 4px;
+			background: white;
+			border-radius: 50%;
+			box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.6);
+			animation: twinkleAmbient 4s infinite ease-in-out;
+			z-index: 1;
+		}
+
+		@keyframes twinkleAmbient {
+
+			0%,
+			100% {
+				transform: scale(0);
+				opacity: 0;
 			}
 
-			@keyframes twinkleAmbient {
-				0%,
-				100% {
-					transform: scale(0);
-					opacity: 0;
-				}
-
-				50% {
-					transform: scale(1.2);
-					opacity: 0.8;
-				}
+			50% {
+				transform: scale(1.2);
+				opacity: 0.8;
 			}
+		}
 
-			/* Timeline Structure */
-			.timeline {
-				position: relative;
-				padding: 2rem 0;
-			}
+		/* Timeline Structure */
+		.timeline {
+			position: relative;
+			padding: 2rem 0;
+		}
 
-			.timeline::before {
-				content: '';
-				position: absolute;
-				left: 50%;
-				top: 0;
-				transform: translateX(-50%);
-				width: 2px;
-				height: 100%;
-				background: linear-gradient(
-					to bottom,
+		.timeline::before {
+			content: '';
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(-50%);
+			width: 2px;
+			height: 100%;
+			background: linear-gradient(to bottom,
 					transparent,
 					var(--accent-silver) 10%,
 					var(--accent-silver) 90%,
-					transparent
-				);
-				background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px);
-				background-size: 1px 10px;
-				background-repeat: repeat-y;
-			}
+					transparent);
+			background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px);
+			background-size: 1px 10px;
+			background-repeat: repeat-y;
+		}
 
-			.timeline-item {
-				margin-bottom: 5rem;
-				position: relative;
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				/* cursor: pointer; */
-				/* Indicate interaction */
-			}
+		.timeline-item {
+			margin-bottom: 5rem;
+			position: relative;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			/* cursor: pointer; */
+			/* Indicate interaction */
+		}
 
-			.timeline-dot {
-				position: absolute;
-				left: 50%;
-				transform: translateX(-50%) rotate(45deg);
-				width: 16px;
-				height: 16px;
-				background: var(--bg-color);
-				border: 2px solid var(--accent-blue);
-				z-index: 2;
-				box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
-				transition: all 0.3s ease;
-			}
+		.timeline-dot {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%) rotate(45deg);
+			width: 16px;
+			height: 16px;
+			background: var(--bg-color);
+			border: 2px solid var(--accent-blue);
+			z-index: 2;
+			box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+			transition: all 0.3s ease;
+		}
 
-			.timeline-item:hover .timeline-dot {
-				background: var(--accent-blue);
-				box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
-				transform: translateX(-50%) rotate(225deg);
-			}
+		.timeline-item:hover .timeline-dot {
+			background: var(--accent-blue);
+			box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+			transform: translateX(-50%) rotate(225deg);
+		}
 
-			.timeline-content {
-				width: 45%;
-				background: var(--card-bg);
-				padding: 2.5rem;
-				border-radius: 2px;
-				backdrop-filter: blur(10px);
-				border: 1px solid rgba(255, 255, 255, 0.6);
-				box-shadow: var(--shadow);
-				transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-				position: relative;
-				z-index: 5;
-			}
+		.timeline-content {
+			width: 45%;
+			background: var(--card-bg);
+			padding: 2.5rem;
+			border-radius: 2px;
+			backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.6);
+			box-shadow: var(--shadow);
+			transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			position: relative;
+			z-index: 5;
+		}
 
-			.timeline-item:nth-child(odd) {
-				flex-direction: row-reverse;
-			}
+		.timeline-item:nth-child(odd) {
+			flex-direction: row-reverse;
+		}
 
-			.timeline-item:nth-child(odd) .timeline-content {
-				margin-right: auto;
-				text-align: right;
-				border-right: 3px solid var(--accent-silver);
-			}
+		.timeline-item:nth-child(odd) .timeline-content {
+			margin-right: auto;
+			text-align: right;
+			border-right: 3px solid var(--accent-silver);
+		}
 
-			.timeline-item:nth-child(even) .timeline-content {
-				margin-left: auto;
-				text-align: left;
-				border-left: 3px solid var(--accent-silver);
-			}
+		.timeline-item:nth-child(even) .timeline-content {
+			margin-left: auto;
+			text-align: left;
+			border-left: 3px solid var(--accent-silver);
+		}
 
-			.timeline-content:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.5);
-				background: rgba(255, 255, 255, 0.95);
-			}
+		.timeline-content:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.5);
+			background: rgba(255, 255, 255, 0.95);
+		}
 
-			.time {
-				display: inline-block;
-				font-family: 'Outfit', sans-serif;
-				font-size: 1.1rem;
-				font-weight: 600;
-				color: var(--accent-blue);
-				margin-bottom: 0.5rem;
-				letter-spacing: 0.05em;
-			}
+		.time {
+			display: inline-block;
+			font-family: 'Outfit', sans-serif;
+			font-size: 1.1rem;
+			font-weight: 600;
+			color: var(--accent-blue);
+			margin-bottom: 0.5rem;
+			letter-spacing: 0.05em;
+		}
 
-			.activity-title {
-				font-family: 'Outfit', sans-serif;
-				font-size: 1.75rem;
-				font-weight: 700;
-				margin-bottom: 1rem;
-				color: var(--text-primary);
-				/* text-transform: uppercase; */
-				letter-spacing: 0.02em;
-			}
+		.activity-title {
+			font-family: 'Outfit', sans-serif;
+			font-size: 1.75rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+			color: var(--text-primary);
+			/* text-transform: uppercase; */
+			letter-spacing: 0.02em;
+		}
 
-			.description {
-				font-family: 'Montserrat', sans-serif;
-				color: var(--text-secondary);
-				font-size: 0.95rem;
-				font-weight: 400;
-				line-height: 1.7;
-				max-width: 50ch;
-			}
+		.description {
+			font-family: 'Montserrat', sans-serif;
+			color: var(--text-secondary);
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.7;
+			max-width: 50ch;
+		}
 
-			/* Links – match theme (accent blue, elegant underline) */
-			a {
-				color: var(--accent-blue);
-				text-decoration: none;
-				border-bottom: 1px solid rgba(37, 99, 235, 0.35);
-				transition:
-					color 0.25s ease,
-					border-color 0.25s ease,
-					box-shadow 0.25s ease;
-			}
+		/* Links – match theme (accent blue, elegant underline) */
+		a {
+			color: var(--accent-blue);
+			text-decoration: none;
+			border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+			transition:
+				color 0.25s ease,
+				border-color 0.25s ease,
+				box-shadow 0.25s ease;
+		}
 
-			a:hover {
-				color: #1d4ed8;
-				border-bottom-color: var(--accent-blue);
-				box-shadow: 0 1px 0 0 var(--accent-blue);
-			}
+		a:hover {
+			color: #1d4ed8;
+			border-bottom-color: var(--accent-blue);
+			box-shadow: 0 1px 0 0 var(--accent-blue);
+		}
 
-			a:visited {
-				color: #4338ca;
-				border-bottom-color: rgba(67, 56, 202, 0.4);
-			}
+		a:visited {
+			color: #4338ca;
+			border-bottom-color: rgba(67, 56, 202, 0.4);
+		}
 
-			a:focus-visible {
-				outline: 2px solid var(--accent-blue);
-				outline-offset: 2px;
-				border-radius: 2px;
-			}
+		a:focus-visible {
+			outline: 2px solid var(--accent-blue);
+			outline-offset: 2px;
+			border-radius: 2px;
+		}
 
-			.timeline-item.swan-trigger .timeline-content {
-				border-color: var(--accent-blue) !important;
-				background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
-			}
+		.timeline-item.swan-trigger .timeline-content {
+			border-color: var(--accent-blue) !important;
+			background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+		}
 
-			.timeline-item.swan-trigger .timeline-dot {
-				/* background: var(--accent-blue);
+		.timeline-item.swan-trigger .timeline-dot {
+			/* background: var(--accent-blue);
             border-color: #ffffff;
             width: 20px;
             height: 20px; */
-				box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
-				cursor: pointer;
+			box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+			cursor: pointer;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
 			}
 
-			@keyframes fadeInUp {
-				from {
-					opacity: 0;
-					transform: translateY(30px);
-				}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
 
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
+		.timeline-item {
+			opacity: 0;
+			animation: fadeInUp 1s ease-out forwards;
+		}
+
+		.timeline-item:nth-child(1) {
+			animation-delay: 0.2s;
+		}
+
+		.timeline-item:nth-child(2) {
+			animation-delay: 0.4s;
+		}
+
+		.timeline-item:nth-child(3) {
+			animation-delay: 0.6s;
+		}
+
+		.timeline-item:nth-child(4) {
+			animation-delay: 0.8s;
+		}
+
+		.timeline-item:nth-child(5) {
+			animation-delay: 1s;
+		}
+
+		.timeline-item:nth-child(6) {
+			animation-delay: 1.2s;
+		}
+
+		/* --- POLAROID STYLES --- */
+		.image-index {
+			position: absolute;
+			bottom: 12px;
+			right: 12px;
+			background: transparent;
+			color: #94a3b8;
+			font-size: 14px;
+			font-family: 'Outfit', sans-serif;
+			font-weight: 600;
+			pointer-events: none;
+		}
+
+		.polaroid-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			/* Let clicks pass through to timeline */
+			z-index: 1;
+			/* Behind timeline content (z-index 10) */
+			overflow: hidden;
+		}
+
+		.polaroid {
+			position: absolute;
+			background: white;
+			padding: 10px 10px 45px 10px;
+			/* Traditional Polaroid sizing */
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+			transition:
+				transform 0.3s ease,
+				z-index 0.3s ease;
+			width: 270px;
+			pointer-events: auto;
+			/* Enable hover on photos */
+			cursor: pointer;
+			transform: translate(var(--parallax-x, 0), var(--parallax-y, 0)) var(--base-rotate, rotate(0deg));
+		}
+
+		.polaroid img {
+			width: 100%;
+			height: auto;
+			display: block;
+			filter: sepia(20%) contrast(90%);
+			object-fit: cover;
+			/* Vintage feel */
+		}
+
+		.polaroid:hover {
+			transform: translate(var(--parallax-x, 0), var(--parallax-y, 0)) var(--base-rotate, rotate(0deg)) scale(1.1) !important;
+			z-index: 20;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+		}
+
+		/* Positioning & Rotation */
+		.polaroid:nth-child(1) {
+			top: 14%;
+			left: 5%;
+			--base-rotate: rotate(-6deg);
+		}
+
+		.polaroid:nth-child(2) {
+			top: 30%;
+			right: 5%;
+			--base-rotate: rotate(4deg);
+		}
+
+		.polaroid:nth-child(3) {
+			top: 43%;
+			left: 8%;
+			--base-rotate: rotate(3deg);
+		}
+
+		.polaroid:nth-child(4) {
+			top: 57%;
+			right: 8%;
+			--base-rotate: rotate(-5deg);
+		}
+
+		.polaroid:nth-child(5) {
+			top: 70%;
+			left: 5%;
+			--base-rotate: rotate(-2deg);
+		}
+
+		.polaroid:nth-child(6) {
+			top: 85%;
+			right: 5%;
+			--base-rotate: rotate(5deg);
+		}
+
+		@media (max-width: 1024px) {
+			.polaroid-container {
+				display: none;
+				/* Hide on smaller screens to avoid overlap */
+			}
+		}
+
+		@media (max-width: 768px) {
+			.timeline::before {
+				left: 20px;
 			}
 
 			.timeline-item {
-				opacity: 0;
-				animation: fadeInUp 1s ease-out forwards;
+				flex-direction: row;
+				justify-content: flex-start;
+				padding-left: 3rem;
 			}
 
-			.timeline-item:nth-child(1) {
-				animation-delay: 0.2s;
+			.timeline-dot {
+				left: 20px;
 			}
 
-			.timeline-item:nth-child(2) {
-				animation-delay: 0.4s;
-			}
-
-			.timeline-item:nth-child(3) {
-				animation-delay: 0.6s;
-			}
-
-			.timeline-item:nth-child(4) {
-				animation-delay: 0.8s;
-			}
-
-			.timeline-item:nth-child(5) {
-				animation-delay: 1s;
-			}
-
-			.timeline-item:nth-child(6) {
-				animation-delay: 1.2s;
-			}
-
-			/* --- POLAROID STYLES --- */
-			.image-index {
-				position: absolute;
-				bottom: 12px;
-				right: 12px;
-				background: transparent;
-				color: #94a3b8;
-				font-size: 14px;
-				font-family: 'Outfit', sans-serif;
-				font-weight: 600;
-				pointer-events: none;
-			}
-
-			.polaroid-container {
-				position: absolute;
-				top: 0;
-				left: 0;
+			.timeline-content {
 				width: 100%;
-				height: 100%;
-				pointer-events: none;
-				/* Let clicks pass through to timeline */
-				z-index: 1;
-				/* Behind timeline content (z-index 10) */
-				overflow: hidden;
+				text-align: left !important;
+				border: none !important;
+				border-left: 3px solid var(--accent-silver) !important;
 			}
 
-			.polaroid {
-				position: absolute;
-				background: white;
-				padding: 10px 10px 45px 10px;
-				/* Traditional Polaroid sizing */
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-				transition:
-					transform 0.3s ease,
-					z-index 0.3s ease;
-				width: 270px;
-				pointer-events: auto;
-				/* Enable hover on photos */
-				cursor: pointer;
-				transform: translate(var(--parallax-x, 0), var(--parallax-y, 0))
-					var(--base-rotate, rotate(0deg));
+			h1 {
+				font-size: clamp(1.6rem, 8vw, 3.5rem);
 			}
+		}
 
-			.polaroid img {
-				width: 100%;
-				height: auto;
-				display: block;
-				filter: sepia(20%) contrast(90%);
-				object-fit: cover;
-				/* Vintage feel */
-			}
+		/* --- SWAN TRANSFORM (OVERLAY METHOD) --- */
+		/* Swan overlay container */
+		.swan-overlay {
+			position: absolute;
+			left: 50%;
+			/* top: 0; */
+			transform: translateX(-50%);
+			width: 60px;
+			height: 60px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 11;
+			pointer-events: none;
+		}
 
-			.polaroid:hover {
-				transform: translate(var(--parallax-x, 0), var(--parallax-y, 0))
-					var(--base-rotate, rotate(0deg)) scale(1.1) !important;
-				z-index: 20;
-				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-			}
+		.swan-overlay svg {
+			width: 20px;
+			height: auto;
+			opacity: 0;
+			transform: rotate(0deg);
+			transition: all 0.8s ease-in-out;
+			filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.8));
+		}
 
-			/* Positioning & Rotation */
-			.polaroid:nth-child(1) {
-				top: 14%;
-				left: 5%;
-				--base-rotate: rotate(-6deg);
-			}
+		.swan-overlay svg path {
+			fill: #2563eb;
+		}
 
-			.polaroid:nth-child(2) {
-				top: 30%;
-				right: 5%;
-				--base-rotate: rotate(4deg);
-			}
+		/* Active state triggered by JS - Rotation with Crossfade */
+		.timeline-item.swan-active .timeline-dot {
+			transform: translateX(-50%) rotate(405deg);
+			/* 360 + 45 = full rotation maintaining diamond */
+			opacity: 0;
+			transition: all 0.8s ease-in-out;
+		}
 
-			.polaroid:nth-child(3) {
-				top: 43%;
-				left: 8%;
-				--base-rotate: rotate(3deg);
-			}
+		.timeline-item.swan-active .swan-overlay svg {
+			opacity: 1;
+			transform: rotate(360deg);
+			/* Full rotation */
+		}
 
-			.polaroid:nth-child(4) {
-				top: 57%;
-				right: 8%;
-				--base-rotate: rotate(-5deg);
-			}
-
-			.polaroid:nth-child(5) {
-				top: 70%;
-				left: 5%;
-				--base-rotate: rotate(-2deg);
-			}
-
-			.polaroid:nth-child(6) {
-				top: 85%;
-				right: 5%;
-				--base-rotate: rotate(5deg);
-			}
-
-			@media (max-width: 1024px) {
-				.polaroid-container {
-					display: none;
-					/* Hide on smaller screens to avoid overlap */
-				}
-			}
-
-			@media (max-width: 768px) {
-				.timeline::before {
-					left: 20px;
-				}
-
-				.timeline-item {
-					flex-direction: row;
-					justify-content: flex-start;
-					padding-left: 3rem;
-				}
-
-				.timeline-dot {
-					left: 20px;
-				}
-
-				.timeline-content {
-					width: 100%;
-					text-align: left !important;
-					border: none !important;
-					border-left: 3px solid var(--accent-silver) !important;
-				}
-
-				h1 {
-					font-size: clamp(1.6rem, 8vw, 3.5rem);
-				}
-			}
-
-			/* --- SWAN TRANSFORM (OVERLAY METHOD) --- */
-			/* Swan overlay container */
+		/* --- RESPONSIVE SWAN OVERLAY --- */
+		@media (max-width: 768px) {
 			.swan-overlay {
-				position: absolute;
-				left: 50%;
-				/* top: 0; */
-				transform: translateX(-50%);
-				width: 60px;
-				height: 60px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				z-index: 11;
-				pointer-events: none;
+				left: 20px;
 			}
+		}
 
-			.swan-overlay svg {
-				width: 20px;
-				height: auto;
-				opacity: 0;
-				transform: rotate(0deg);
-				transition: all 0.8s ease-in-out;
-				filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.8));
-			}
+		/* --- PAGE TRANSITION FADE-IN --- */
+		#page-transition {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #f8fafc;
+			/* Match bg color */
+			z-index: 9999;
+			pointer-events: all;
+			opacity: 1;
+			transition: opacity 0.9s ease-out;
+		}
+	</style>
+</head>
 
-			.swan-overlay svg path {
-				fill: #2563eb;
-			}
+<body>
+	<!-- FADE IN OVERLAY -->
+	<div id="page-transition"></div>
 
-			/* Active state triggered by JS - Rotation with Crossfade */
-			.timeline-item.swan-active .timeline-dot {
-				transform: translateX(-50%) rotate(405deg);
-				/* 360 + 45 = full rotation maintaining diamond */
-				opacity: 0;
-				transition: all 0.8s ease-in-out;
-			}
-
-			.timeline-item.swan-active .swan-overlay svg {
-				opacity: 1;
-				transform: rotate(360deg);
-				/* Full rotation */
-			}
-
-			/* --- RESPONSIVE SWAN OVERLAY --- */
-			@media (max-width: 768px) {
-				.swan-overlay {
-					left: 20px;
-				}
-			}
-
-			/* --- PAGE TRANSITION FADE-IN --- */
-			#page-transition {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: #f8fafc;
-				/* Match bg color */
-				z-index: 9999;
-				pointer-events: all;
-				opacity: 1;
-				transition: opacity 0.9s ease-out;
-			}
-		</style>
-	</head>
-
-	<body>
-		<!-- FADE IN OVERLAY -->
-		<div id="page-transition"></div>
-
-		<!-- POLAROID CONTAINER -->
-		<div class="polaroid-container">
-			<div class="polaroid" data-speed="-2.0">
-				<img src="./resource/images/mi here.jpg" alt="Date Memory 1" />
-				<div class="image-index">-5</div>
-			</div>
-			<div class="polaroid" data-speed="2.5">
-				<img src="./resource/images/breakfast.jpg" alt="Date Memory 2" />
-				<div class="image-index">5</div>
-			</div>
-			<div class="polaroid" data-speed="1.8">
-				<img src="./resource/images/coffee.jpeg" alt="Date Memory 3" />
-				<div class="image-index">-3</div>
-			</div>
-			<div class="polaroid" data-speed="-3.0">
-				<img src="./resource/images/ptb.jpg" alt="Date Memory 4" />
-				<div class="image-index">1</div>
-			</div>
-			<div class="polaroid" data-speed="2.2">
-				<img src="./resource/images/hdl.jpg" alt="Date Memory 5" />
-				<div class="image-index">5</div>
-			</div>
-			<div class="polaroid" data-speed="-1.5">
-				<img src="./resource/images/khrooo-timeline.jpg" alt="Date Memory 6" />
-				<div class="image-index">5</div>
-			</div>
+	<!-- POLAROID CONTAINER -->
+	<div class="polaroid-container">
+		<div class="polaroid" data-speed="-2.0">
+			<img src="./resource/images/mi here.jpg" alt="Date Memory 1" />
+			<div class="image-index">-5</div>
 		</div>
+		<div class="polaroid" data-speed="2.5">
+			<img src="./resource/images/breakfast.jpg" alt="Date Memory 2" />
+			<div class="image-index">5</div>
+		</div>
+		<div class="polaroid" data-speed="1.8">
+			<img src="./resource/images/coffee.jpeg" alt="Date Memory 3" />
+			<div class="image-index">-3</div>
+		</div>
+		<div class="polaroid" data-speed="-3.0">
+			<img src="./resource/images/ptb.jpg" alt="Date Memory 4" />
+			<div class="image-index">1</div>
+		</div>
+		<div class="polaroid" data-speed="2.2">
+			<img src="./resource/images/hdl.jpg" alt="Date Memory 5" />
+			<div class="image-index">5</div>
+		</div>
+		<div class="polaroid" data-speed="-1.5">
+			<img src="./resource/images/khrooo-timeline.jpg" alt="Date Memory 6" />
+			<div class="image-index">5</div>
+		</div>
+	</div>
 
-		<div class="container">
-			<header>
-				<h1>Just the two of us</h1>
-				<p class="subtitle">
-					For our Valent-anni, I have something special on my mind for us...
-				</p>
-			</header>
+	<div class="container">
+		<header>
+			<h1>Just the two of us</h1>
+			<p class="subtitle">
+				For our Valent-anni, I have something special on my mind for us...
+			</p>
+		</header>
 
-			<div class="timeline">
-				<!-- 09:00 AM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">08:00 AM</span>
-						<h3 class="activity-title">Your ride is ready</h3>
-						<p class="description">
-							Mi hể. Qua đón làng đi nượn ^^. <br />
-							Nàng chuẩn bị bộ cánh thật choáy để chụp ẻnh nhé. Oh, maybe
-							something tôn cổ,
-							<span style="font-size: 0.65rem"
-								>(like áo quây (idk?). Áo trơn nhé)</span
-							>. Don't forget khuyên tai ✨
-							<br />
-							<span style="font-size: 1.5rem">˚˖𓍢ִ໋💅🏻✧˚.🎀༘⋆</span>
-						</p>
-					</div>
+		<div class="timeline">
+			<!-- 09:00 AM -->
+			<div class="timeline-item">
+				<div class="timeline-dot"></div>
+				<div class="timeline-content">
+					<span class="time">08:30 AM</span>
+					<h3 class="activity-title">Your ride is ready</h3>
+					<p class="description">
+						Mi hể. Qua đón làng đi nượn ^^. <br />
+						Nàng chuẩn bị bộ cánh thật choáy để chụp ẻnh nhé. Oh, maybe
+						something tôn cổ,
+						<span style="font-size: 0.65rem">(like áo quây (idk?). Áo trơn nhé)</span>. Don't forget khuyên
+						tai ✨
+						<br />
+						<span style="font-size: 1.5rem">˚˖𓍢ִ໋💅🏻✧˚.🎀༘⋆</span>
+					</p>
 				</div>
+			</div>
 
-				<!-- 11:00 AM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">09:00 AM</span>
-						<h3 class="activity-title">Breakfast</h3>
-						<p class="description">
-							Try out the taste of
-							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								href="https://www.google.com/maps/dir/?api=1&destination=Bún+Bò+Huế+Vạn+Hương"
-								>Bún bò Huế Vạn Hương</a
-							>. Bún bò trong biệt thự Pháp cổ 500m². <br />
-							Nhoàm nhoàm. <span style="font-size: 1.5rem">😋😋</span>
-						</p>
-					</div>
+			<!-- 11:00 AM -->
+			<div class="timeline-item">
+				<div class="timeline-dot"></div>
+				<div class="timeline-content">
+					<span class="time">09:30 AM</span>
+					<h3 class="activity-title">Breakfast</h3>
+					<p class="description">
+						Try out the taste of
+						<a target="_blank" rel="noopener noreferrer"
+							href="https://www.google.com/maps/dir/?api=1&destination=Bún+Bò+Huế+Vạn+Hương">Bún bò Huế
+							Vạn Hương</a>. Bún bò trong biệt thự Pháp cổ 500m². <br />
+						Nhoàm nhoàm. <span style="font-size: 1.5rem">😋😋</span>
+					</p>
 				</div>
+			</div>
 
-				<!-- 10:00 AM  -->
-				<div class="timeline-item swan-trigger">
-					<div class="timeline-dot"></div>
-					<div class="swan-overlay">
-						<svg
-							version="1.1"
-							id="Capa_1"
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-							x="0px"
-							y="0px"
-							viewBox="0 0 163.549 163.549"
-							style="enable-background: new 0 0 163.549 163.549"
-							xml:space="preserve"
-						>
-							<path
-								d="M63.544,161.323c93.412,14.144,96.695-43.74,96.695-43.74c3.631-41.441-38.811-53.608-51.627-76.633
+			<!-- 10:00 AM  -->
+			<div class="timeline-item swan-trigger">
+				<div class="timeline-dot"></div>
+				<div class="swan-overlay">
+					<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 163.549 163.549"
+						style="enable-background: new 0 0 163.549 163.549" xml:space="preserve">
+						<path
+							d="M63.544,161.323c93.412,14.144,96.695-43.74,96.695-43.74c3.631-41.441-38.811-53.608-51.627-76.633
 	c-12.836-23.012,16.928-26.473,15.115-11.666c-1.799,14.785,6.912,17.432,7.408,18.582c0.488,1.143,13.146,13.816,14.961,11.434
 	c1.803-2.396-5.18-11.434-5.18-11.434s5.422-3.135,7.473-10.199c5.922-16.124-23.34-54.924-54.25-28.95
 	c-30.266,27.961,10.18,58.23,20.719,73.352c10.525,15.126,10.137,26.54,3.609,28.615c-6.672,2.11-11.881-4.533-14.619-14.81
-	C101.3,86.29,84.45,55.433,48.593,65.281C21.958,73.845,25.07,84.362,3.681,78.442C-3.874,150.468,63.544,161.323,63.544,161.323z"
-							/>
-						</svg>
-					</div>
-
-					<div class="timeline-content">
-						<span class="time">10:00 AM</span>
-						<h3 class="activity-title">Coffee</h3>
-						<p class="description">
-							Check out the coffee of
-							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								href="https://www.google.com/maps/dir/?api=1&destination=Blank+Space+-+Workspace+%26+Coffee"
-								>Blank Space Coffee</a
-							>. Làm bộ ảnh tất liên. Nhưng mà font kéck mềnh cứ phải ⚫⬛ mới
-							được. Ngon luôn. <br />
-							<span style="font-size: 1.5rem">☕˙✧˖°📸⋆｡˚☕</span>
-						</p>
-					</div>
+	C101.3,86.29,84.45,55.433,48.593,65.281C21.958,73.845,25.07,84.362,3.681,78.442C-3.874,150.468,63.544,161.323,63.544,161.323z" />
+					</svg>
 				</div>
 
-				<!-- 11:00 AM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">11:00 AM</span>
-						<h3 class="activity-title">Photobooth & Musicbox</h3>
-						<p class="description">
-							More fun back at
-							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								href="https://www.google.com/maps/dir/?api=1&destination=Vincom+Center+Trần+Duy+Hưng"
-								>Vincom TDH</a
-							>. Cho em xin ngay bài Chiều lên bản Thượng. Nhíu nha nhíu nhô.
-							<br />
-							<span style="font-size: 1.5rem">[◉¯]🎤‧₊˚♪ 𝄞₊˚⊹♬ ♪ ٩(ˊᗜˋ*)و</span>
-						</p>
-					</div>
+				<div class="timeline-content">
+					<span class="time">10:30 AM</span>
+					<h3 class="activity-title">Coffee</h3>
+					<p class="description">
+						Check out the coffee of
+						<a target="_blank" rel="noopener noreferrer"
+							href="https://www.google.com/maps/dir/?api=1&destination=Blank+Space+-+Workspace+%26+Coffee">Blank
+							Space Coffee</a>. Làm bộ ảnh tất liên. Nhưng mà font kéck mềnh cứ phải ⚫⬛ mới
+						được. Ngon luôn. <br />
+						<span style="font-size: 1.5rem">☕˙✧˖°📸⋆｡˚☕</span>
+					</p>
 				</div>
+			</div>
 
-				<!-- 12:00 PM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">12:00 PM</span>
-						<h3 class="activity-title">Haidilao</h3>
-						<p class="description">
-							2 bát tái chín, chín chỗ tái. À nhầm, 1 nồi, 2 nước, 2 chấm, 2
-							cơm, 1 bò... Nghĩ thôi đã thèm hj. Đẫm nhệ và nhũng nhịu. <br />
-							<span style="font-size: 1.5rem">🍝🥢♡ ༘*.ﾟ (っ˘ڡ˘ς)</span>
-						</p>
-					</div>
+			<!-- 11:00 AM -->
+			<div class="timeline-item">
+				<div class="timeline-dot"></div>
+				<div class="timeline-content">
+					<span class="time">11:30 AM</span>
+					<h3 class="activity-title">Photobooth & Musicbox</h3>
+					<p class="description">
+						More fun back at
+						<a target="_blank" rel="noopener noreferrer"
+							href="https://www.google.com/maps/dir/?api=1&destination=Vincom+Center+Trần+Duy+Hưng">Vincom
+							TDH</a>. Cho em xin ngay bài Chiều lên bản Thượng. Nhíu nha nhíu nhô.
+						<br />
+						<span style="font-size: 1.5rem">[◉¯]🎤‧₊˚♪ 𝄞₊˚⊹♬ ♪ ٩(ˊᗜˋ*)و</span>
+					</p>
 				</div>
+			</div>
 
-				<!-- 02:00 PM -->
-				<div class="timeline-item">
-					<div class="timeline-dot"></div>
-					<div class="timeline-content">
-						<span class="time">02:00 PM</span>
-						<h3 class="activity-title">khrooo... 😴😴</h3>
-						<p class="description">
-							noon noon. <br />
-							sleep tight. <br />
-							sweet dreams. <br />
-							nhob nhob. <br />
-							Vào nghỉ ngơi,
-							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								href="https://www.google.com/maps/dir/?api=1&destination=T-Box+Café+Đỗ+Quang"
-								>netflix n chill</a
-							>
-							ạ. <br />
-							<span style="font-size: 1.5rem">‎꜀( ꜆-ࡇ-)꜆ ᶻ 𝗓 𐰁</span>
-						</p>
-					</div>
+			<!-- 12:00 PM -->
+			<div class="timeline-item">
+				<div class="timeline-dot"></div>
+				<div class="timeline-content">
+					<span class="time">12:30 PM</span>
+					<h3 class="activity-title">Haidilao</h3>
+					<p class="description">
+						2 bát tái chín, chín chỗ tái. À nhầm, 1 nồi, 2 nước, 2 chấm, 2
+						cơm, 1 bò... Nghĩ thôi đã thèm hj. Đẫm nhệ và nhũng nhịu. <br />
+						<span style="font-size: 1.5rem">🍝🥢♡ ༘*.ﾟ (っ˘ڡ˘ς)</span>
+					</p>
+				</div>
+			</div>
+
+			<!-- 02:00 PM -->
+			<div class="timeline-item">
+				<div class="timeline-dot"></div>
+				<div class="timeline-content">
+					<span class="time">02:30 PM</span>
+					<h3 class="activity-title">khrooo... 😴😴</h3>
+					<p class="description">
+						noon noon. <br />
+						sleep tight. <br />
+						sweet dreams. <br />
+						nhob nhob. <br />
+						Vào nghỉ ngơi,
+						<a target="_blank" rel="noopener noreferrer"
+							href="https://www.google.com/maps/dir/?api=1&destination=T-Box+Café+Đỗ+Quang">netflix n
+							chill</a>
+						ạ. <br />
+						<span style="font-size: 1.5rem">‎꜀( ꜆-ࡇ-)꜆ ᶻ 𝗓 𐰁</span>
+					</p>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- SPARKLE SCRIPT -->
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				// Prevent a single orphan word on subtitle line 2:
-				// keep the last two words together with a non‑breaking space.
-				const subtitle = document.querySelector('.subtitle');
-				if (subtitle) {
-					const text = (subtitle.textContent || '').trim();
-					const lastSpace = text.lastIndexOf(' ');
-					if (lastSpace !== -1) {
-						subtitle.textContent =
-							text.slice(0, lastSpace) + '\u00A0' + text.slice(lastSpace + 1);
-					}
+	<!-- SPARKLE SCRIPT -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// Prevent a single orphan word on subtitle line 2:
+			// keep the last two words together with a non‑breaking space.
+			const subtitle = document.querySelector('.subtitle');
+			if (subtitle) {
+				const text = (subtitle.textContent || '').trim();
+				const lastSpace = text.lastIndexOf(' ');
+				if (lastSpace !== -1) {
+					subtitle.textContent =
+						text.slice(0, lastSpace) + '\u00A0' + text.slice(lastSpace + 1);
 				}
+			}
 
-				// Wait until all images AND fonts are fully loaded
-				// before revealing the content (fade out overlay).
-				window.addEventListener('load', () => {
-					const overlay = document.getElementById('page-transition');
-					if (!overlay) return;
+			// Wait until all images AND fonts are fully loaded
+			// before revealing the content (fade out overlay).
+			window.addEventListener('load', () => {
+				const overlay = document.getElementById('page-transition');
+				if (!overlay) return;
 
-					const finish = () => {
-						overlay.style.opacity = '0';
-						setTimeout(() => {
-							overlay.remove();
-						}, 900);
-					};
-
-					if (document.fonts && document.fonts.ready) {
-						document.fonts.ready.then(finish).catch(finish);
-					} else {
-						finish();
-					}
-				});
-
-				// 1. CURSOR TRAIL SPARKLES
-				let throttle = false;
-				document.addEventListener('mousemove', (e) => {
-					const polaroids = document.querySelectorAll('.polaroid');
-					const mouseX = e.clientX;
-					const mouseY = e.clientY;
-
-					// Calculate center of screen
-					const rx = window.innerWidth / 2;
-					const ry = window.innerHeight / 2;
-
-					// Floating parallax logic for Polaroids
-					polaroids.forEach((p) => {
-						const speed = parseFloat(p.getAttribute('data-speed'));
-						const offsetX = (mouseX - rx) / rx;
-						const offsetY = (mouseY - ry) / ry;
-						const x = offsetX * speed * 20;
-						const y = offsetY * speed * 20;
-
-						// Apply parallax using CSS variables to preserve base rotation
-						p.style.setProperty('--parallax-x', `${x}px`);
-						p.style.setProperty('--parallax-y', `${y}px`);
-					});
-
-					if (throttle) return;
-					throttle = true;
-					setTimeout(() => (throttle = false), 50);
-
-					createSparkle(e.pageX, e.pageY);
-				});
-
-				// 2. AMBIENT BACKGROUND SPARKLES
-				setInterval(() => {
-					const x = Math.random() * document.body.scrollWidth;
-					const y = Math.random() * document.body.scrollHeight;
-					createAmbientSparkle(x, y);
-				}, 300);
-
-				function createSparkle(x, y) {
-					const sparkle = document.createElement('div');
-					sparkle.classList.add('sparkle-particle');
-					document.body.appendChild(sparkle);
-
-					const size = Math.random() * 8 + 4 + 'px';
-					sparkle.style.width = size;
-					sparkle.style.height = size;
-					sparkle.style.left = x + 'px';
-					sparkle.style.top = y + 'px';
-
-					const colors = [
-						'#ffffff',
-						'#cbd5e1',
-						'#2563eb',
-						'#60a5fa',
-						'#ffd700',
-					];
-					const randomColor = colors[Math.floor(Math.random() * colors.length)];
-					sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
-					sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
-
+				const finish = () => {
+					overlay.style.opacity = '0';
 					setTimeout(() => {
-						sparkle.remove();
-					}, 1500);
-				}
+						overlay.remove();
+					}, 900);
+				};
 
-				function createAmbientSparkle(x, y) {
-					const sparkle = document.createElement('div');
-					sparkle.classList.add('ambient-sparkle');
-					document.body.appendChild(sparkle);
-
-					const size = Math.random() * 5 + 2 + 'px';
-					sparkle.style.width = size;
-					sparkle.style.height = size;
-					sparkle.style.left = x + 'px';
-					sparkle.style.top = y + 'px';
-					sparkle.style.animationDelay = Math.random() * 2 + 's';
-
-					setTimeout(() => {
-						sparkle.remove();
-					}, 2000);
-				}
-
-				// 3. SWAN TRANSFORMATION ON CLICK (dot only)
-				const trigger = document.querySelector('.swan-trigger');
-				if (trigger) {
-					const dot = trigger.querySelector('.timeline-dot');
-					if (dot) {
-						dot.addEventListener('click', (e) => {
-							e.stopPropagation();
-							// Toggle swan transformation
-							trigger.classList.toggle('swan-active');
-
-							// Spawn sparkles on click
-							for (let i = 0; i < 30; i++) {
-								setTimeout(() => {
-									createSparkle(
-										e.pageX + (Math.random() * 200 - 100),
-										e.pageY + (Math.random() * 200 - 100),
-									);
-								}, i * 30);
-							}
-						});
-					}
+				if (document.fonts && document.fonts.ready) {
+					document.fonts.ready.then(finish).catch(finish);
+				} else {
+					finish();
 				}
 			});
-		</script>
-	</body>
+
+			// 1. CURSOR TRAIL SPARKLES
+			let throttle = false;
+			document.addEventListener('mousemove', (e) => {
+				const polaroids = document.querySelectorAll('.polaroid');
+				const mouseX = e.clientX;
+				const mouseY = e.clientY;
+
+				// Calculate center of screen
+				const rx = window.innerWidth / 2;
+				const ry = window.innerHeight / 2;
+
+				// Floating parallax logic for Polaroids
+				polaroids.forEach((p) => {
+					const speed = parseFloat(p.getAttribute('data-speed'));
+					const offsetX = (mouseX - rx) / rx;
+					const offsetY = (mouseY - ry) / ry;
+					const x = offsetX * speed * 20;
+					const y = offsetY * speed * 20;
+
+					// Apply parallax using CSS variables to preserve base rotation
+					p.style.setProperty('--parallax-x', `${x}px`);
+					p.style.setProperty('--parallax-y', `${y}px`);
+				});
+
+				if (throttle) return;
+				throttle = true;
+				setTimeout(() => (throttle = false), 50);
+
+				createSparkle(e.pageX, e.pageY);
+			});
+
+			// 2. AMBIENT BACKGROUND SPARKLES
+			setInterval(() => {
+				const x = Math.random() * document.body.scrollWidth;
+				const y = Math.random() * document.body.scrollHeight;
+				createAmbientSparkle(x, y);
+			}, 300);
+
+			function createSparkle(x, y) {
+				const sparkle = document.createElement('div');
+				sparkle.classList.add('sparkle-particle');
+				document.body.appendChild(sparkle);
+
+				const size = Math.random() * 8 + 4 + 'px';
+				sparkle.style.width = size;
+				sparkle.style.height = size;
+				sparkle.style.left = x + 'px';
+				sparkle.style.top = y + 'px';
+
+				const colors = [
+					'#ffffff',
+					'#cbd5e1',
+					'#2563eb',
+					'#60a5fa',
+					'#ffd700',
+				];
+				const randomColor = colors[Math.floor(Math.random() * colors.length)];
+				sparkle.style.background = `radial-gradient(circle, ${randomColor} 10%, transparent 70%)`;
+				sparkle.style.boxShadow = `0 0 5px 1px ${randomColor}80`;
+
+				setTimeout(() => {
+					sparkle.remove();
+				}, 1500);
+			}
+
+			function createAmbientSparkle(x, y) {
+				const sparkle = document.createElement('div');
+				sparkle.classList.add('ambient-sparkle');
+				document.body.appendChild(sparkle);
+
+				const size = Math.random() * 5 + 2 + 'px';
+				sparkle.style.width = size;
+				sparkle.style.height = size;
+				sparkle.style.left = x + 'px';
+				sparkle.style.top = y + 'px';
+				sparkle.style.animationDelay = Math.random() * 2 + 's';
+
+				setTimeout(() => {
+					sparkle.remove();
+				}, 2000);
+			}
+
+			// 3. SWAN TRANSFORMATION ON CLICK (dot only)
+			const trigger = document.querySelector('.swan-trigger');
+			if (trigger) {
+				const dot = trigger.querySelector('.timeline-dot');
+				if (dot) {
+					dot.addEventListener('click', (e) => {
+						e.stopPropagation();
+						// Toggle swan transformation
+						trigger.classList.toggle('swan-active');
+
+						// Spawn sparkles on click
+						for (let i = 0; i < 30; i++) {
+							setTimeout(() => {
+								createSparkle(
+									e.pageX + (Math.random() * 200 - 100),
+									e.pageY + (Math.random() * 200 - 100),
+								);
+							}, i * 30);
+						}
+					});
+				}
+			}
+		});
+	</script>
+</body>
+
 </html>
